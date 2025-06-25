@@ -55,7 +55,7 @@ function WhyWorkWithUs() {
 
     return (
         <div className="bg-[#1A1818] py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="container mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-[36px] sm:text-4xl md:text-5xl lg:text-[48px] font-[700] text-white mb-4 leading-tight">
                         Why Work With Us?
