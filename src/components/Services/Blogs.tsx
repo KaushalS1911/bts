@@ -47,7 +47,7 @@ const highlightPhrases = (text: string) => {
         .replace(/E-E-A-T principles/g, '<span class="text-orange-400 font-semibold">$&.</span>')
         .replace(/\bChatGPT\b/g, '<span class="text-orange-400 font-semibold">$&</span>')
         .replace(/in accordance with TechTarget/g, '<span class="text-orange-400 font-semibold">$&</span>')
-        .replace(/Trust me on this/g, '<span class="text-orange-400 font-semibold">$&</span>');
+        .replace(/Trust me on this/g, '<span class="text-orange-400 font-semibold">$&</span>')
 };
 
 const blogData: BlogData = {
