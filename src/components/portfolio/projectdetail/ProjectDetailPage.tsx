@@ -25,7 +25,7 @@ And what helps to achieve a good result? We will look at these issues and some o
 export default function ProjectDetailPage() {
     return (
         <div className="bg-[#1A1818] text-white min-h-screen py-12 space-y-16">
-            <div className="max-w-7xl px-15 mx-auto space-y-16">
+            <div className="container px-15 mx-auto space-y-16">
                 <header className="space-y-1 ">
                     <div className="md:text-[56px] sm:text-[52px] text-[34px] font-semibold">
                         NFT Glimps
@@ -35,17 +35,17 @@ export default function ProjectDetailPage() {
                         <Image
                             src="/assets/images/portfolio/NFT Glimps.jpg"
                             alt="Main NFT"
-                            width={1300}
-                            height={1300}
+                            width={1400}
+                            height={1400}
                             className="rounded-lg object-contain"
                         />
                     </div>
                 </header>
 
                 {/* Project Story Section */}
-                <section className="space-y-6 max-w-6xl mx-auto">
-                    <div className="text-2xl md:text-[32px] sm:text-[28px] text-[24px] max-w-3xl mx-auto font-semibold">{sections.projectStory.title}</div>
-                    <p className="text-[#E0E0E0] font-normal md:text-[18px] text-[16px] max-w-3xl mx-auto whitespace-pre-line">
+                <section className="space-y-6 container mx-auto">
+                    <div className="text-2xl md:text-[32px] sm:text-[28px] text-[24px] max-w-5xl mx-auto font-semibold">{sections.projectStory.title}</div>
+                    <p className="text-[#E0E0E0] font-normal md:text-[18px] text-[16px] max-w-5xl mx-auto whitespace-pre-line">
                         {sections.projectStory.content}
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -64,7 +64,7 @@ export default function ProjectDetailPage() {
                 </section>
 
                 {/* About Section */}
-                <section className="space-y-6 max-w-3xl mx-auto">
+                <section className="space-y-6 max-w-5xl mx-auto">
                     <h2 className="text-[#FFFFFF] font-bold  md:text-[32px] sm:text-[28px] text-[24px] ">{sections.about.title}</h2>
                     <p className="text-[#E0E0E0] md:text-[18px]  text-[16px] font-normal whitespace-pre-line">{sections.about.content}</p>
                 </section>

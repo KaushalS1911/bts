@@ -47,7 +47,7 @@ const ProjectShowcase: React.FC = () => {
 
     return (
         <section className="bg-[#1A1818] text-white py-12 px-4 sm:px-6 lg:px-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 container mx-auto">
                 {projects.map((project, index) => (
                     <div key={index} className="space-y-4">
                         <div className="aspect-square overflow-hidden rounded-xl">
@@ -94,7 +94,7 @@ const ProjectShowcase: React.FC = () => {
 
             {/* CTA */}
             <div
-                className="mt-16 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 max-w-6xl mx-auto text-white border border-white">
+                className="mt-16 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 container mx-auto text-white border border-white">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
                     <h2 className="text-[32px] sm:text-[36px] md:text-[40px] font-bold">
                         Hire the best developers and designers around!
