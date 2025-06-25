@@ -4,7 +4,7 @@ import star from "../../../public/assets/images/about/Star 1.png";
 
 export default function ContactIntro() {
     return (
-        <div className="bg-[#18171C] relative overflow-hidden">
+        <div className="bg-[#1A1818] relative overflow-hidden">
             {/* Hero Section */}
             <div className="relative flex flex-col items-center justify-center min-h-[40vh] py-16 overflow-hidden">
                 <div className="absolute top-30 left-130 w-10 h-10">

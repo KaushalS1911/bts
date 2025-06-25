@@ -49,25 +49,25 @@ export default function WorldNetworkSection() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                 {countries?.map((country, index) => (
                     <div
                         key={index}
                         className="bg-white text-black rounded-xl p-5 shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
                     >
-                        <div className="flex items-center gap-x-2 mb-3 border-b border-gray-500 pb-3">
+                        <div className="flex items-center gap-x-2 mb-3 pb-3 border-b-[2px] border-b-[#C4C4C4A6]">
                             <Image
                                 src={country.flag}
                                 alt={`${country.name} Flag`}
                                 width={60}
                                 height={60}
-                                className="rounded-sm"
+                                className="rounded-sm w-[35px] h-[35px] sm:w-[40px] sm:h-[40px] md:w-[45px] md:h-[45px]"
                             />
-                            <h3 className="text-[#183B56] text-[20px] font-medium">
+                            <h3 className="text-[#183B56] text-[16px] sm:text-[20px] md:text-[22px] font-medium">
                                 {country.name}
                             </h3>
                         </div>
-                        <p className="text-[#7C8F9E] text-left text-[17px] font-normal leading-[26px]">
+                        <p className="text-[#7C8F9E] text-left text-[16px] sm:text-[17px] md:text-[18px] leading-[24px] sm:leading-[26px] font-normal">
                             {country.description}
                         </p>
                     </div>

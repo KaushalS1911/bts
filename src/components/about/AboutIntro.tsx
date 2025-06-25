@@ -5,7 +5,7 @@ import {Play} from 'lucide-react';
 
 const AboutIntro = () => {
     return (
-        <section className="bg-[#1A1818] py-30 px-4 text-white">
+        <section className="bg-[#111010] py-30 px-4 text-white">
             <div className="container mx-auto px-4">
                 {/* Heading outside container but visually aligned */}
                 <div className="container mx-auto px-4">

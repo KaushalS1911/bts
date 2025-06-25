@@ -4,15 +4,15 @@ import star from '../../../public/assets/images/about/Star 1.png'
 
 const WhatMakesUs = () => {
     return (
-        <section className="bg-[#121212] text-white py-20 px-4 relative overflow-hidden">
-            <div className="absolute top-50 left-130 w-10 h-10">
+        <section className="bg-[#111010] text-white py-20 px-4 relative overflow-hidden">
+            <div className="absolute top-50 left-100 w-10 h-10">
                 <Image
                     src={star}
                     alt="star"
                     className="w-full h-full object-contain"
                 />
             </div>
-            <div className="absolute bottom-20 right-130 w-10 h-10">
+            <div className="absolute bottom-20 right-110 w-10 h-10">
                 <Image
                     src={star}
                     alt="star"
