@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { User, Calendar } from 'lucide-react';
-import img1 from '../../../public/assets/images/blogDetails/Article/Articlesimg1.jpg';
-import img2 from '../../../public/assets/images/blogDetails/Article/Articlesimg3.jpg';
-import img3 from '../../../public/assets/images/blogDetails/Article/Articlesimg2.jpg';
+import img1 from '../../../public/assets/images/services/Article/Articlesimg1.jpg';
+import img2 from '../../../public/assets/images/services/Article/Articlesimg3.jpg';
+import img3 from '../../../public/assets/images/services/Article/Articlesimg2.jpg';
 import type { StaticImageData } from 'next/image';
 
 interface Article {
