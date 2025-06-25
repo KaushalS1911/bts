@@ -9,6 +9,10 @@ import { Footer } from './footer';
 // Sample navigation items for website
 const navigationItems: NavItem[] = [
   {
+    id: 'home',
+    label: 'Home',
+    href: '/'
+  },{
     id: 'services',
     label: 'Services',
     href: '/services'
