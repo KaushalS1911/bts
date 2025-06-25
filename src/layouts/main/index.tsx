@@ -24,6 +24,11 @@ const navigationItems: NavItem[] = [
     href: '/about'
   },
   {
+    id: 'blogDetails',
+    label: 'Blog',
+    href: '/blogDetails'
+  },
+  {
     id: 'career',
     label: 'Career',
     href: '/career'
