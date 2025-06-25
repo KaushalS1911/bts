@@ -27,7 +27,7 @@ function Openings() {
 
     return (
         <div className="bg-[#1A1818] p-4 sm:p-6 lg:p-8">
-            <div className="max-w-6xl container mx-auto">
+            <div className="container mx-auto">
                 <div className="mb-6">
                     <span className="inline-block bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-medium">
                         Openings
@@ -38,22 +38,26 @@ function Openings() {
                     {jobOpenings.map((job, index) => (
                         <div
                             key={index}
-                            className="bg-[#1A1818] border border-[#989898] rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                            className="bg-[#1A1818] border border-[#989898] rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4"
                         >
-                            <h3 className="text-white text-[20px] sm:text-[24px] font-medium sm:text-left">
+                            {/* Title on the left */}
+                            <div className="sm:w-1/3 text-white text-[20px] sm:text-[24px] font-medium sm:text-left text-center">
                                 {job.title}
-                            </h3>
+                            </div>
 
-                            <div className="text-gray-300 text-[18px] sm:text-[20px]">
+                            {/* Type in the center */}
+                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-center">
                                 {job.type}
                             </div>
 
-                            <div className="text-gray-300 text-[18px] sm:text-[20px]">
+                            {/* Experience on the right */}
+                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-right sm:text-right">
                                 {job.experience}
                             </div>
                         </div>
                     ))}
                 </div>
+
             </div>
         </div>
     );

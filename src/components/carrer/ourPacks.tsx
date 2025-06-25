@@ -27,9 +27,9 @@ function OurPerksAndBenefits() {
 
     return (
         <div className="bg-[#1A1818] py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl container mx-auto">
+            <div className="container mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-[48px] sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+                    <h2 className="text-[36px] sm:text-4xl md:text-5xl lg:text-[48px] font-[700] text-white mb-4 leading-tight">
                         Our Perks & Benefits
                     </h2>
                 </div>

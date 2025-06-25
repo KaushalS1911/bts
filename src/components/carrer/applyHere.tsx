@@ -45,15 +45,15 @@ function ApplyHereForm() {
         <div className="bg-[#1A1818] py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl container mx-auto">
                 <div className="text-center mb-12 px-4">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                    <h2 className="text-[36px] sm:text-4xl md:text-5xl lg:text-[48px] font-[700] text-white mb-1 leading-tight">
                         Apply here!
                     </h2>
-                    <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-white text-base sm:text-lg md:text-[24px] max-w-3xl mx-auto leading-relaxed">
                         Whether you're looking for solution or want to explore opportunities, we're here to collaborate with you.
                     </p>
                 </div>
 
-                <div className="space-y-8 px-4">
+                <div className="space-y-8 px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <input
@@ -62,7 +62,7 @@ function ApplyHereForm() {
                                 placeholder="Your Name"
                                 value={formData.name}
                                 onChange={handleInputChange}
-                                className="w-full bg-transparent border-b-2 border-white text-white placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
+                                className="w-full bg-transparent border-b-2 border-[#F2F2F2] text-[#F2F2F2] placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
                             />
                         </div>
 
@@ -73,7 +73,7 @@ function ApplyHereForm() {
                                 placeholder="Your Email"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                className="w-full bg-transparent border-b-2 border-white text-white placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
+                                className="w-full bg-transparent border-b-2 border-[#F2F2F2] text-[#F2F2F2] placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
                             />
                         </div>
                     </div>
@@ -86,7 +86,7 @@ function ApplyHereForm() {
                                 placeholder="Phone Number"
                                 value={formData.phone}
                                 onChange={handleInputChange}
-                                className="w-full bg-transparent border-b-2 border-white text-white placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
+                                className="w-full bg-transparent border-b-2 border-[#F2F2F2] text-[#F2F2F2] placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
                             />
                         </div>
 
@@ -97,7 +97,7 @@ function ApplyHereForm() {
                                 placeholder="Country"
                                 value={formData.country}
                                 onChange={handleInputChange}
-                                className="w-full bg-transparent border-b-2 border-white text-white placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
+                                className="w-full bg-transparent border-b-2 border-[#F2F2F2] text-[#F2F2F2] placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
                             />
                         </div>
                     </div>
@@ -110,7 +110,7 @@ function ApplyHereForm() {
                                 placeholder="Applied for"
                                 value={formData.appliedFor}
                                 onChange={handleInputChange}
-                                className="w-full bg-transparent border-b-2 border-white text-white placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
+                                className="w-full bg-transparent border-b-2 border-[#F2F2F2] text-[#F2F2F2] placeholder-white py-3 focus:border-orange-500 focus:outline-none transition-colors duration-300"
                             />
                         </div>
 
@@ -122,17 +122,22 @@ function ApplyHereForm() {
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                                 accept=".pdf,.doc,.docx"
                             />
-                            <div className="w-full border-b-2 border-white py-3 cursor-pointer">
-                                <span className="text-red-500">Upload</span>
+                            <div className="w-full border-b-2 border-[#F2F2F2] py-3 cursor-pointer">
+                                <span className="text-[#EE2A6D]">Upload</span>
                                 <span className="text-white ml-1">your Resume</span>
                             </div>
+                            {formData.resume && (
+                                <div className="mt-2 text-sm text-[#F2F2F2]">
+                                    Selected file: <span className="text-orange-400">{formData.resume.name}</span>
+                                </div>
+                            )}
                         </div>
                     </div>
 
                     <div className="flex justify-center pt-8">
                         <button
                             onClick={handleSubmit}
-                            className="bg-gradient-to-r from-red-500 to-orange-500 text-white font-semibold py-3 px-10 rounded-full hover:from-red-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                            className="bg-gradient-to-r from-[#F2682F] to-[#EE2A6D] text-white font-semibold py-3 px-20 rounded-full  transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
                         >
                             Submit
                         </button>
