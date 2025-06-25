@@ -47,20 +47,20 @@ const ProjectShowcase: React.FC = () => {
 
     return (
         <section className="bg-[#1A1818] text-white py-12 px-4 sm:px-6 lg:px-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 container mx-auto">
                 {projects.map((project, index) => (
-                    <div key={index} className="space-y-4">
-                        <div className="aspect-square overflow-hidden rounded-xl">
+                    <div key={index} className="space-y-4 cursor-pointer " onClick={() => router.push(project.navigate)}>
+                        <div className=" overflow-hidden rounded-xl mt-15">
                             <img
                                 src={project.imageUrl}
                                 alt={project.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-[620px] object-cover"
                             />
                         </div>
                         <div>
                             <div
-                                className="text-[24px] sm:text-[28px] md:text-[32px] font-bold text-white cursor-pointer flex items-center gap-5"
-                                onClick={() => router.push(project.navigate)}
+                                className="text-[24px] sm:text-[28px] md:text-[32px] font-bold text-white leading-[32px] flex items-center gap-5 "
+
                             >
                                 {project.title}
                                 <span>
@@ -73,18 +73,18 @@ const ProjectShowcase: React.FC = () => {
                                 </span>
                             </div>
 
-                            <div className="mt-1 text-sm text-gray-400">
+                            <div className="mt-5">
                                 <p>
                                     <span
-                                        className="font-normal text-[#606060] md:text-[18px] text-[16px]">Client:</span>{" "}
+                                        className="font-normal text-[#606060] md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px]">Client:</span>{" "}
                                     <span
-                                        className="md:text-[18px] text-[16px] font-normal text-white">{project.client}</span>
+                                        className="md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px] font-normal text-white ">{project.client}</span>
                                 </p>
-                                <p>
+                                <p className="mt-2">
                                     <span
-                                        className="font-normal text-[#606060] md:text-[18px] text-[16px]">Work:</span>{" "}
+                                        className="font-normal text-[#606060] leading-[22px] tracking-[0.25px] md:text-[18px] text-[16px]">Work:</span>{" "}
                                     <span
-                                        className="md:text-[18px] text-[16px] font-normal text-white">{project.work}</span>
+                                        className="md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px] font-normal text-white">{project.work}</span>
                                 </p>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ const ProjectShowcase: React.FC = () => {
 
             {/* CTA */}
             <div
-                className="mt-16 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 max-w-6xl mx-auto text-white border border-white">
+                className="mt-35 bg-[#302d2d] rounded-2xl py-15 px-6  sm:px-12 container mx-auto text-white border border-white">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
                     <h2 className="text-[32px] sm:text-[36px] md:text-[40px] font-bold">
                         Hire the best developers and designers around!
