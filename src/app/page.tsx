@@ -6,6 +6,8 @@ import WhatWeDeliver from "@/components/home/whatWeDeliver";
 import OurClient from "@/components/home/ourClient";
 import WorkingWithUs from "@/components/home/workingWithUs";
 import NewsInsight from "@/components/home/newsInsight";
+import WhyWeBest from "@/components/about/WhyWeBest";
+import AnimatedBackground from "@/components/home/AnimatedBackground";
 // import { ScrollCardsParallax } from "@/components/Services/ScrollCardsParallax";
 // import DevelopmentProcess from "@/components/development-process/development-process";
 // import {Header} from "@/layouts/main/header";
@@ -22,10 +24,12 @@ import NewsInsight from "@/components/home/newsInsight";
       {/* <Header />*/}
 
       {/* Hero Section */}
-      <HeroSection />
+      {/*<HeroSection />*/}
+          <AnimatedBackground/>
           <Busines/>
           <WhatWeDeliver/>
           {/*<IndustriesWeserve/>*/}
+          <WhyWeBest/>
           <OurClient/>
           <WorkingWithUs/>
           <NewsInsight/>

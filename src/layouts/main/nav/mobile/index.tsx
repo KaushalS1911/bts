@@ -17,14 +17,14 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
   };
 
   return (
-      <>
-        {/* Mobile Overlay */}
-        {isOpen && (
-            <div
-                className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50"
-                onClick={() => setIsOpen(false)}
-            />
-        )}
+    <div className='z-9999'>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
         {/* Mobile Menu */}
         <div
@@ -71,36 +71,36 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
           </div>
         </div>
 
-        {/* Mobile Toggle Button - Export this to be used in Header */}
-        <button
-            onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle menu"
+      {/* Mobile Toggle Button - Export this to be used in Header */}
+      <button
+        onClick={toggleMenu}
+        className="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-          >
-            {isOpen ? (
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                />
-            ) : (
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                />
-            )}
-          </svg>
-        </button>
-      </>
+          {isOpen ? (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          ) : (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          )}
+        </svg>
+      </button>
+    </div>
   );
 };
 
