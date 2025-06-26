@@ -49,7 +49,7 @@ function ApplyHereForm() {
                         Apply here!
                     </h2>
                     <p className="text-white text-base sm:text-lg md:text-[24px] max-w-3xl mx-auto leading-relaxed">
-                        Whether you're looking for solution or want to explore opportunities, we're here to collaborate with you.
+                        Whether you&apos;re looking for solution or want to explore opportunities, we&apos;re here to collaborate with you.
                     </p>
                 </div>
 

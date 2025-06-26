@@ -43,10 +43,15 @@ const Swiper: React.FC<SwiperProps> = ({
     useEffect(() => {
         if (!autoplay) return;
         const interval = setInterval(() => {
-            nextSlide();
+            setCurrentIndex(prevIndex => {
+                const newIndex = prevIndex >= totalSlides - 1 ? 0 : prevIndex + 1;
+                onSlideChange?.({ activeIndex: newIndex });
+                return newIndex;
+            });
         }, autoplay.delay);
         return () => clearInterval(interval);
-    }, [currentIndex, autoplay]);
+    }, [autoplay.delay, totalSlides, onSlideChange]);
+
 
     return (
         <div className={`relative ${className}`} ref={swiperRef}>
@@ -152,7 +157,7 @@ const OurClient: React.FC = () => {
                     Our Client Success Gallery
                 </h2>
                 <p className="text-center text-gray-300 mb-12 text-base md:text-lg">
-                    A glimpse into the transformative journeys we've been part of
+                    A glimpse into the transformative journeys we&apos;ve been part of
                 </p>
 
                 <Swiper
@@ -164,13 +169,15 @@ const OurClient: React.FC = () => {
                     {projects.map((project, idx) => (
                         <SwiperSlide key={idx}>
                             <div className="w-full rounded-2xl shadow-lg flex flex-col items-center">
-                                <div className="max-w-[400px] w-full h-[300px] rounded-xl overflow-hidden mb-4 flex items-center justify-center bg-[#f3ede6]">
-                                    <img
+                                <div className="max-w-[400px] w-full h-[300px] rounded-xl overflow-hidden mb-4 flex items-center justify-center bg-[#f3ede6] relative">
+                                    <Image
                                         src={project.image}
                                         alt={project.title}
-                                        className="object-cover w-full h-full"
+                                        fill
+                                        className="object-cover"
                                     />
                                 </div>
+
                                 <div className="w-full flex flex-col items-center">
                                     <h3 className="md:text-[24px] sm:text-[20px] text-[18px] text-white mb-1">
                                         {project.title}
