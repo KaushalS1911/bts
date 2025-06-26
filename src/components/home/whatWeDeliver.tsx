@@ -1,7 +1,10 @@
 'use client';
 
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import Image from 'next/image';
+import gsap from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceCardProps {
     title: string;
@@ -73,13 +76,64 @@ const ServiceCard: React.FC<ServiceCardProps> = ({title, description, image}) =>
 };
 
 const WhatWeDeliver: React.FC = () => {
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const subheadingRef = useRef<HTMLParagraphElement>(null);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const ctx = gsap.context(() => {
+            if (headingRef.current) {
+                gsap.from(headingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: headingRef.current,
+                        start: "top 80%",
+                    },
+                });
+            }
+            if (subheadingRef.current) {
+                gsap.from(subheadingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    delay: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: subheadingRef.current,
+                        start: "top 85%",
+                    },
+                });
+            }
+            cardRefs.current.forEach((ref, idx) => {
+                if (ref) {
+                    gsap.from(ref, {
+                        opacity: 0,
+                        y: 60,
+                        scale: 0.95,
+                        duration: 0.8,
+                        delay: 0.1 * idx,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: ref,
+                            start: "top 90%",
+                        },
+                    });
+                }
+            });
+        });
+        return () => ctx.revert();
+    }, []);
+
     return (
         <section className="bg-[#1A1818] text-white py-16 px-4">
             <div className='container mx-auto'>
                 <div className=" text-center">
-                    <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold mb-2">What We Deliver</h2>
+                    <h2 ref={headingRef} className="text-[32px] sm:text-[40px] md:text-[48px] font-bold mb-2">What We Deliver</h2>
                     <div className=' text-center flex justify-center items-center mb-20'>
-                        <p className="text-[16px] md:text-[18px]  mb-12 max-w-[600px]">
+                        <p ref={subheadingRef} className="text-[16px] md:text-[18px]  mb-12 max-w-[600px]">
                             Tailored digital solutions built to solve real-world challenges — fast, flexible, and
                             future-ready.
                         </p>
@@ -87,7 +141,12 @@ const WhatWeDeliver: React.FC = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:gap-18 gap-6">
                         {services.map((service, index) => (
-                            <ServiceCard key={index} {...service} />
+                            <div
+                                key={index}
+                                ref={el => { cardRefs.current[index] = el; return undefined; }}
+                            >
+                                <ServiceCard {...service} />
+                            </div>
                         ))}
                     </div>
                 </div>

@@ -2,6 +2,9 @@
 
 import React, {useEffect, useRef} from 'react';
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 interface FloatingShape {
     x: number;
@@ -24,6 +27,9 @@ export const AnimatedBackground: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationRef = useRef<number | null>(null);
     const shapesRef = useRef<FloatingShape[]>([]);
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const subheadingRef = useRef<HTMLParagraphElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     const initializeCanvas = (canvas: HTMLCanvasElement) => {
         canvas.width = window.innerWidth;
@@ -114,6 +120,51 @@ export const AnimatedBackground: React.FC = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const ctx = gsap.context(() => {
+            if (headingRef.current) {
+                gsap.from(headingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: headingRef.current,
+                        start: "top 80%",
+                    },
+                });
+            }
+            if (subheadingRef.current) {
+                gsap.from(subheadingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    delay: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: subheadingRef.current,
+                        start: "top 85%",
+                    },
+                });
+            }
+            if (buttonRef.current) {
+                gsap.from(buttonRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    delay: 0.4,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: buttonRef.current,
+                        start: "top 90%",
+                    },
+                });
+            }
+        });
+        return () => ctx.revert();
+    }, []);
+
     return (
         <div className="relative bg-[#1a1818] overflow-hidden">
             {/* Animated Canvas Background */}
@@ -143,7 +194,7 @@ export const AnimatedBackground: React.FC = () => {
             {/* Main content */}
             <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
                 <div className="max-w-4xl mx-auto">
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    <h1 ref={headingRef} className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
                         Beyond Just <span
                         style={{
                             background: 'linear-gradient(135deg, #F2682F, #EE2A6D, #F04750)',
@@ -157,13 +208,14 @@ export const AnimatedBackground: React.FC = () => {
                         We Build Impact.
                     </h1>
 
-                    <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    <p ref={subheadingRef} className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
                         We design, develop, and deploy IT services that
                         empower startups to enterprises—across industries
                         and borders.
                     </p>
 
                     <button
+                        ref={buttonRef}
                         className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-full hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                         Let's Started
                         <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

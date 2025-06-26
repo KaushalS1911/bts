@@ -1,8 +1,11 @@
 'use client';
 
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {ChevronLeft, ChevronRight} from 'lucide-react';
 import Image from "next/image";
+import gsap from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 interface Testimonial {
     id: number;
@@ -59,6 +62,43 @@ const testimonials: Testimonial[] = [
 const WorkingWithUs: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleTestimonials] = useState(3);
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const avatarRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const ctx = gsap.context(() => {
+            if (headingRef.current) {
+                gsap.from(headingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: headingRef.current,
+                        start: "top 80%",
+                    },
+                });
+            }
+            avatarRefs.current.forEach((ref, idx) => {
+                if (ref) {
+                    gsap.from(ref, {
+                        opacity: 0,
+                        y: 60,
+                        scale: 0.95,
+                        duration: 0.8,
+                        delay: 0.1 * idx,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: ref,
+                            start: "top 90%",
+                        },
+                    });
+                }
+            });
+        });
+        return () => ctx.revert();
+    }, []);
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) =>
@@ -101,7 +141,7 @@ const WorkingWithUs: React.FC = () => {
             <div className="max-w-7xl mx-auto w-full">
                 {/* Header */}
                 <div className="text-center mb-16 flex items-center justify-center">
-                    <h2 className="text-[32px] md:text-[48px] sm:text-[40px] font-bold mb-8 max-w-[600px]">
+                    <h2 ref={headingRef} className="text-[32px] md:text-[48px] sm:text-[40px] font-bold mb-8 max-w-[600px]">
                         WHY CUSTOMERS LOVE
                         WORKING WITH US
                     </h2>
@@ -154,6 +194,7 @@ const WorkingWithUs: React.FC = () => {
                             return (
                                 <div
                                     key={`${testimonial.id}-${index}`}
+                                    ref={el => (avatarRefs.current[index] = el)}
                                     className={`flex flex-col items-center transition-all duration-300 ${
                                         isCenter
                                             ? 'transform scale-110'
