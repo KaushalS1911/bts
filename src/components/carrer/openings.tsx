@@ -1,5 +1,11 @@
 'use client'
 import React, {useEffect, useRef} from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface JobOpening {
     title: string;
@@ -45,7 +51,7 @@ function Openings() {
                 </div>
 
                 <div className="space-y-4">
-                    {jobOpenings.map((job, index) => (
+                    {jobOpenings?.map((job, index) => (
                         <div
                             key={index}
                             ref={(el) => {
