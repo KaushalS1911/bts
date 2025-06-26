@@ -15,7 +15,7 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
   };
 
   return (
-    <>
+    <div className='z-9999'>
       {/* Mobile Overlay */}
       {isOpen && (
         <div
@@ -98,7 +98,7 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
           )}
         </svg>
       </button>
-    </>
+    </div>
   );
 };
 

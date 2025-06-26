@@ -8,7 +8,7 @@ export const DesktopNavigation: React.FC<NavigationProps> = ({
                                                                onItemClick
                                                              }) => {
   return (
-      <header className="hidden lg:block bg-[#1A1818] text-white sticky top-0 z-50 py-4">
+      <header className="hidden lg:block bg-[#1A1818] text-white sticky z-9999 top-0 z-50 py-4">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}

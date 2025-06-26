@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
 
 const WorkingWithUs: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [visibleTestimonials] = useState(5);
+    const [visibleTestimonials] = useState(3);
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) =>
@@ -148,7 +148,7 @@ const WorkingWithUs: React.FC = () => {
                             </div>
                         </div>
 
-                    <div className="flex justify-center items-center gap-12 px-16 py-3">
+                    <div className="flex justify-center items-center gap-4 sm:gap-12 px-16 py-3">
                         {getVisibleTestimonials().map((testimonial, index) => {
                             const isCenter = index === Math.floor(visibleTestimonials / 2);
                             return (
@@ -182,19 +182,6 @@ const WorkingWithUs: React.FC = () => {
                         })}
                     </div>
 
-                    {/* Dots Indicator */}
-                    <div className="flex justify-center mt-12 gap-2">
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentIndex(index)}
-                                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                                    index === currentIndex ? 'bg-white' : 'bg-gray-600'
-                                }`}
-                                aria-label={`Go to testimonial ${index + 1}`}
-                            />
-                        ))}
-                    </div>
                 </div>
             </div>
         </div>

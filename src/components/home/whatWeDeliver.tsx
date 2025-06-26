@@ -74,7 +74,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({title, description, image}) =>
 
 const WhatWeDeliver: React.FC = () => {
     return (
-        <section className="bg-black text-white py-16 px-4">
+        <section className="bg-[#1A1818] text-white py-16 px-4">
             <div className='container mx-auto'>
                 <div className=" text-center">
                     <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold mb-2">What We Deliver</h2>

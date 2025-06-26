@@ -1,139 +1,194 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
+'use client'
+
+import React, {useEffect, useRef} from 'react';
+import Image from "next/image";
 
 interface FloatingShape {
-  x: number;
-  y: number;
-  size: number;
-  speedX: number;
-  speedY: number;
-  opacity: number;
-  rotation: number;
-  rotationSpeed: number;
+    x: number;
+    y: number;
+    size: number;
+    speedX: number;
+    speedY: number;
+    opacity: number;
 }
 
+const STAR_COUNT = 100;
+const MIN_STAR_SIZE = 1;
+const MAX_STAR_SIZE = 4;
+const MIN_OPACITY = 0.2;
+const MAX_OPACITY = 1;
+const STAR_SPEED = 0.3;
+const BACKGROUND_COLOR = '#1a1818';
+
 export const AnimatedBackground: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const shapesRef = useRef<FloatingShape[]>([]);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const animationRef = useRef<number | null>(null);
+    const shapesRef = useRef<FloatingShape[]>([]);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    const initializeCanvas = (canvas: HTMLCanvasElement) => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     };
 
-    const createShapes = () => {
-      const shapes: FloatingShape[] = [];
-      const shapeCount = 20;
+    const createShapes = (canvas: HTMLCanvasElement) => {
+        const shapes: FloatingShape[] = [];
 
-      for (let i = 0; i < shapeCount; i++) {
-        shapes.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 80 + 20,
-          speedX: (Math.random() - 0.5) * 1,
-          speedY: (Math.random() - 0.5) * 1,
-          opacity: Math.random() * 0.15 + 0.05,
-          rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.02,
-        });
-      }
+        for (let i = 0; i < STAR_COUNT; i++) {
+            shapes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * (MAX_STAR_SIZE - MIN_STAR_SIZE) + MIN_STAR_SIZE,
+                speedX: (Math.random() - 0.5) * STAR_SPEED,
+                speedY: (Math.random() - 0.5) * STAR_SPEED,
+                opacity: Math.random() * (MAX_OPACITY - MIN_OPACITY) + MIN_OPACITY,
+            });
+        }
 
-      shapesRef.current = shapes;
+        shapesRef.current = shapes;
     };
 
-    const animate = () => {
-      // Clear canvas with the custom background color
-      ctx.fillStyle = '#1A1818';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      shapesRef.current.forEach((shape, index) => {
-        // Update position
+    const updateShapePosition = (shape: FloatingShape, canvas: HTMLCanvasElement) => {
         shape.x += shape.speedX;
         shape.y += shape.speedY;
-        shape.rotation += shape.rotationSpeed;
 
-        // Wrap around edges instead of bouncing
+        // Wrap around edges
         if (shape.x < -shape.size) shape.x = canvas.width + shape.size;
         if (shape.x > canvas.width + shape.size) shape.x = -shape.size;
         if (shape.y < -shape.size) shape.y = canvas.height + shape.size;
         if (shape.y > canvas.height + shape.size) shape.y = -shape.size;
-
-        // Save context for rotation
-        ctx.save();
-        ctx.translate(shape.x, shape.y);
-        ctx.rotate(shape.rotation);
-
-        // Create different shapes
-        if (index % 3 === 0) {
-          // Circles with gradient
-          const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, shape.size);
-          gradient.addColorStop(0, `rgba(255, 107, 107, ${shape.opacity})`);
-          gradient.addColorStop(0.7, `rgba(238, 90, 36, ${shape.opacity * 0.5})`);
-          gradient.addColorStop(1, 'rgba(255, 107, 107, 0)');
-          
-          ctx.fillStyle = gradient;
-          ctx.beginPath();
-          ctx.arc(0, 0, shape.size, 0, Math.PI * 2);
-          ctx.fill();
-        } else if (index % 3 === 1) {
-          // Rectangles
-          ctx.fillStyle = `rgba(255, 107, 107, ${shape.opacity * 0.3})`;
-          ctx.fillRect(-shape.size/2, -shape.size/2, shape.size, shape.size);
-        } else {
-          // Triangles
-          ctx.fillStyle = `rgba(238, 90, 36, ${shape.opacity * 0.4})`;
-          ctx.beginPath();
-          ctx.moveTo(0, -shape.size/2);
-          ctx.lineTo(-shape.size/2, shape.size/2);
-          ctx.lineTo(shape.size/2, shape.size/2);
-          ctx.closePath();
-          ctx.fill();
-        }
-
-        // Restore context
-        ctx.restore();
-      });
-
-      animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Initialize
-    resizeCanvas();
-    createShapes();
-    animate();
+    const drawStar = (ctx: CanvasRenderingContext2D, shape: FloatingShape) => {
+        const starGradient = ctx.createRadialGradient(
+            shape.x, shape.y, 0,
+            shape.x, shape.y, shape.size * 2
+        );
+        starGradient.addColorStop(0, `rgba(255, 255, 255, ${shape.opacity})`);
+        starGradient.addColorStop(0.5, `rgba(255, 255, 255, ${shape.opacity * 0.3})`);
+        starGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
-    // Event listeners
-    const handleResize = () => {
-      resizeCanvas();
-      createShapes();
+        ctx.fillStyle = starGradient;
+        ctx.beginPath();
+        ctx.arc(shape.x, shape.y, shape.size, 0, Math.PI * 2);
+        ctx.fill();
     };
 
-    window.addEventListener('resize', handleResize);
+    const animate = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+        // Clear canvas with dark space background
+        ctx.fillStyle = BACKGROUND_COLOR;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    return () => {
-      if (animationRef.current !== null) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      window.removeEventListener('resize', handleResize);
+        shapesRef.current.forEach((shape) => {
+            updateShapePosition(shape, canvas);
+            drawStar(ctx, shape);
+        });
+
+        animationRef.current = requestAnimationFrame(() => animate(canvas, ctx));
     };
-  }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ 
-        background: '#1A1818',
-        zIndex: 1
-      }}
-    />
-  );
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const handleResize = () => {
+            initializeCanvas(canvas);
+            createShapes(canvas);
+        };
+
+        // Initialize animation
+        initializeCanvas(canvas);
+        createShapes(canvas);
+        animate(canvas, ctx);
+
+        // Event listeners
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    return (
+        <div className="relative bg-[#1a1818] overflow-hidden">
+            {/* Animated Canvas Background */}
+            <canvas
+                ref={canvasRef}
+                className="absolute inset-0 w-full h-full"
+                style={{zIndex: 1}}
+            />
+
+            {/* Decorative stars */}
+            <Image
+                src="/assets/images/home/Star 2 (1).png"
+                alt="Decorative star"
+                width={100}
+                height={100}
+                className="object-cover absolute z-[19] left-20 top-25"
+            />
+
+            <Image
+                src="/assets/images/home/Star 2 (1).png"
+                alt="Decorative star"
+                width={100}
+                height={100}
+                className="object-cover absolute z-[19] right-[20%] top-[60%]"
+            />
+
+            {/* Main content */}
+            <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                        Beyond Just <span
+                        style={{
+                            background: 'linear-gradient(135deg, #F2682F, #EE2A6D, #F04750)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
+                    >
+        Code
+      </span> —<br/>
+                        We Build Impact.
+                    </h1>
+
+                    <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        We design, develop, and deploy IT services that
+                        empower startups to enterprises—across industries
+                        and borders.
+                    </p>
+
+                    <button
+                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-full hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Let's Started
+                        <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                  d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            {/* Globe image */}
+            <div className="flex justify-center items-center">
+                <Image
+                    src="/assets/images/home/globe-blue-tech-BfBV6GvzpM.png"
+                    alt="Globe illustration"
+                    width={148}
+                    height={148}
+                    className="z-10"
+                    style={{
+                        filter: 'drop-shadow(0 0 100px #B91C5C) drop-shadow(0 0 20px #B91C5C) drop-shadow(0 0 60px #991B1B)'
+                    }}
+                />
+            </div>
+        </div>
+    );
 };
+
+export default AnimatedBackground;

@@ -4,7 +4,7 @@ import React from "react";
 
 const Business: React.FC = () => {
     return (
-        <section className="bg-black text-white py-16 px-4">
+        <section className="bg-[#1A1818] text-white py-16 px-4">
             <div className='container mx-auto '>
                 <div className="flex items-center justify-center text-center  mb-12 w-full">
                     <div className='max-w-[840px]'>
