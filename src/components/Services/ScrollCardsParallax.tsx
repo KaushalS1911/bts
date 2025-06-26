@@ -67,6 +67,51 @@ export const ScrollCardsParallax: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
+  const MAX_CARDS = 10; // Adjust as needed for your use case
+  // Define a fixed number of hooks for each card
+  const cardProgress0 = useTransform(scrollYProgress, [0 / MAX_CARDS, 0.5 / MAX_CARDS, 1 / MAX_CARDS], [0, 0.5, 1]);
+  const y0 = useTransform(cardProgress0, [0, 1], [100, 0]);
+  const opacity0 = useTransform(cardProgress0, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress1 = useTransform(scrollYProgress, [1 / MAX_CARDS, 1.5 / MAX_CARDS, 2 / MAX_CARDS], [0, 0.5, 1]);
+  const y1 = useTransform(cardProgress1, [0, 1], [100, 30]);
+  const opacity1 = useTransform(cardProgress1, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress2 = useTransform(scrollYProgress, [2 / MAX_CARDS, 2.5 / MAX_CARDS, 3 / MAX_CARDS], [0, 0.5, 1]);
+  const y2 = useTransform(cardProgress2, [0, 1], [100, 60]);
+  const opacity2 = useTransform(cardProgress2, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress3 = useTransform(scrollYProgress, [3 / MAX_CARDS, 3.5 / MAX_CARDS, 4 / MAX_CARDS], [0, 0.5, 1]);
+  const y3 = useTransform(cardProgress3, [0, 1], [100, 90]);
+  const opacity3 = useTransform(cardProgress3, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress4 = useTransform(scrollYProgress, [4 / MAX_CARDS, 4.5 / MAX_CARDS, 5 / MAX_CARDS], [0, 0.5, 1]);
+  const y4 = useTransform(cardProgress4, [0, 1], [100, 120]);
+  const opacity4 = useTransform(cardProgress4, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress5 = useTransform(scrollYProgress, [5 / MAX_CARDS, 5.5 / MAX_CARDS, 6 / MAX_CARDS], [0, 0.5, 1]);
+  const y5 = useTransform(cardProgress5, [0, 1], [100, 150]);
+  const opacity5 = useTransform(cardProgress5, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress6 = useTransform(scrollYProgress, [6 / MAX_CARDS, 6.5 / MAX_CARDS, 7 / MAX_CARDS], [0, 0.5, 1]);
+  const y6 = useTransform(cardProgress6, [0, 1], [100, 180]);
+  const opacity6 = useTransform(cardProgress6, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress7 = useTransform(scrollYProgress, [7 / MAX_CARDS, 7.5 / MAX_CARDS, 8 / MAX_CARDS], [0, 0.5, 1]);
+  const y7 = useTransform(cardProgress7, [0, 1], [100, 210]);
+  const opacity7 = useTransform(cardProgress7, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress8 = useTransform(scrollYProgress, [8 / MAX_CARDS, 8.5 / MAX_CARDS, 9 / MAX_CARDS], [0, 0.5, 1]);
+  const y8 = useTransform(cardProgress8, [0, 1], [100, 240]);
+  const opacity8 = useTransform(cardProgress8, [0, 0.2, 1], [0, 1, 1]);
+
+  const cardProgress9 = useTransform(scrollYProgress, [9 / MAX_CARDS, 9.5 / MAX_CARDS, 10 / MAX_CARDS], [0, 0.5, 1]);
+  const y9 = useTransform(cardProgress9, [0, 1], [100, 270]);
+  const opacity9 = useTransform(cardProgress9, [0, 0.2, 1], [0, 1, 1]);
+
+  const yArr = [y0, y1, y2, y3, y4, y5, y6, y7, y8, y9];
+  const opacityArr = [opacity0, opacity1, opacity2, opacity3, opacity4, opacity5, opacity6, opacity7, opacity8, opacity9];
+
   return (
     <div ref={containerRef}>
       {/* Fixed Background */}
@@ -97,26 +142,13 @@ export const ScrollCardsParallax: React.FC = () => {
       {/* Cards Stacking Section */}
       <section className="relative" style={{ height: `${cardsData.length * 100}vh` }}>
         {cardsData.map((card, index) => {
-          const cardProgress = useTransform(
-            scrollYProgress,
-            [
-              (index) / cardsData.length,
-              (index + 0.5) / cardsData.length,
-              (index + 1) / cardsData.length
-            ],
-            [0, 0.5, 1]
-          );
-
-          const y = useTransform(cardProgress, [0, 1], [100, index * 30]);
-          const opacity = useTransform(cardProgress, [0, 0.2, 1], [0, 1, 1]);
-
           return (
             <motion.div
               key={card.id}
               className="sticky top-20 flex items-center justify-center px-4"
               style={{
-                y,
-                opacity,
+                y: yArr[index],
+                opacity: opacityArr[index],
                 zIndex: index + 1, // Higher index = higher z-index (front)
                 height: '100vh'
               }}

@@ -2,7 +2,7 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import Busines from "@/components/home/business";
 import WhatWeDeliver from "@/components/home/whatWeDeliver";
-import IndustriesWeserve from "@/components/home/industriesWeserve";
+// import IndustriesWeserve from "@/components/home/industriesWeserve";
 import OurClient from "@/components/home/ourClient";
 import WorkingWithUs from "@/components/home/workingWithUs";
 import NewsInsight from "@/components/home/newsInsight";

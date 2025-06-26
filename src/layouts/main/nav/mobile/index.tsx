@@ -2,16 +2,18 @@
 
 import React, { useState } from 'react';
 import { NavigationList } from './nav-list';
-import { NavigationProps } from '../../types/navigation';
+import { NavigationProps, NavItem } from '../../types/navigation';
 
 export const MobileNavigation: React.FC<NavigationProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const handleItemClick = (item: any) => {
+  const handleItemClick = (item: NavItem) => {
     setIsOpen(false);
-    props.onItemClick?.(item);
+    if (props.onItemClick) {
+      props.onItemClick(item);
+    }
   };
 
   return (

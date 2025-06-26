@@ -30,11 +30,6 @@ const Swiper: React.FC<SwiperProps> = ({
     const slideWidth = 100 / slidesPerView;
     const containerWidth = (childrenCount / slidesPerView) * 100;
 
-    const nextSlide = () => {
-        const newIndex = currentIndex >= totalSlides - 1 ? 0 : currentIndex + 1;
-        handleSlideChange(newIndex);
-    };
-
     const handleSlideChange = (index: number) => {
         setCurrentIndex(index);
         onSlideChange?.({ activeIndex: index });
@@ -50,7 +45,7 @@ const Swiper: React.FC<SwiperProps> = ({
             });
         }, autoplay.delay);
         return () => clearInterval(interval);
-    }, [autoplay.delay, totalSlides, onSlideChange]);
+    }, [autoplay, autoplay.delay, totalSlides, onSlideChange]);
 
 
     return (
