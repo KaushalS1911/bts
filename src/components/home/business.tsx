@@ -1,6 +1,6 @@
 'use client'
-
-import React from "react";
+import React from 'react';
+import Image from 'next/image';
 
 const Business: React.FC = () => {
     return (
@@ -27,11 +27,13 @@ const Business: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="relative">
-                        <img
-                            src="/assets/images/home/Clip%20path%20group.png"
+                    <div>
+                        <Image
+                            src="/assets/images/home/Clip.png"
                             alt="globe-network"
-                            className="w-full h-full"
+                            fill
+                            className="object-contain"
+                            priority
                         />
                     </div>
 

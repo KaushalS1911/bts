@@ -34,7 +34,7 @@ export const HeroSection: React.FC = () => {
           <div className="pt-1">
             <button className="cursor-hover group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium cursor-pointer text-white bg-gradient-to-r from-red-500 to-orange-500 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-500/25 hover:scale-105">
               <span className="relative z-10 flex items-center">
-                Let's Started
+                Let&apos;s Started
                 <svg 
                   className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
                   fill="none" 
