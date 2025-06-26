@@ -30,31 +30,37 @@ const WhatMakesUs = () => {
             </div>
 
             <div className="mt-12 space-y-10 max-w-4xl mx-auto px-2 sm:px-4">
-                <div className="text-left group cursor-pointer">
-                    <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] transition-colors duration-300 group-hover:text-[#FAE387]">
-                        Beyond the Brief
-                    </h3>
-                    <p className="text-[#A3A2A2] mt-1 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#FAE387]">
+                <div className="flex justify-start group cursor-pointer">
+                    <div>
+                        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] transition-colors duration-300 group-hover:text-[#FAE387]">
+                            Beyond the Brief
+                        </h3>
+                        <p className="text-[#A3A2A2] ms-0 sm:ms-10 mt-1 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#FAE387]">
                         We dive deep to understand the ‘why’ behind your project.
-                    </p>
+                        </p>
+                    </div>
                 </div>
 
-                <div className="text-center group cursor-pointer">
-                    <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] transition-colors duration-300 group-hover:text-[#FF92D3]">
-                        Beyond the Code
-                    </h3>
-                    <p className="text-[#A3A2A2] mt-1 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#FF92D3]">
-                        We build with business, brand, and user in mind.
-                    </p>
+                <div className="flex justify-start sm:justify-center group cursor-pointer">
+                <div>
+                        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] transition-colors duration-300 group-hover:text-[#FF92D3]">
+                            Beyond the Code
+                        </h3>
+                        <p className="text-[#A3A2A2] ms-0 sm:ms-10 mt-1 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#FF92D3]">
+                            We build with business, brand, and user in mind.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="text-right group cursor-pointer">
-                    <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] transition-colors duration-300 group-hover:text-[#81BAFF]">
-                        Beyond the Launch
-                    </h3>
-                    <p className="text-[#A3A2A2] mt-1 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#81BAFF]">
-                        We stay with you long after the product goes live.
-                    </p>
+                <div className="flex justify-start sm:justify-end group cursor-pointer">
+                    <div>
+                        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] transition-colors duration-300 group-hover:text-[#81BAFF]">
+                            Beyond the Launch
+                        </h3>
+                        <p className="text-[#A3A2A2] ms-0 sm:ms-10 mt-1 text-sm sm:text-base transition-colors duration-300 group-hover:text-[#81BAFF]">
+                            We stay with you long after the product goes live.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
