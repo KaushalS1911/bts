@@ -1,9 +1,4 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
 
 interface JobOpening {
     title: string;
