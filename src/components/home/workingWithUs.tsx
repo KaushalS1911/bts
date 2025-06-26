@@ -160,12 +160,12 @@ const WorkingWithUs: React.FC = () => {
                                             : 'transform scale-90 opacity-70'
                                     }`}
                                 >
-                                    <div
-                                        className="w-[100px] h-[100px] rounded-full overflow-hidden mb-4 border-2 border-gray-700">
-                                        <img
+                                    <div className="w-[100px] h-[100px] relative rounded-full overflow-hidden mb-4 border-2 border-gray-700">
+                                        <Image
                                             src={testimonial.avatar}
                                             alt={testimonial.name}
-                                            className="w-[100px] h-[100px] object-cover"
+                                            fill
+                                            className="object-cover"
                                         />
                                     </div>
 

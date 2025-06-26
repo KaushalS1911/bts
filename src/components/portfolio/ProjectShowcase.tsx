@@ -50,11 +50,12 @@ const ProjectShowcase: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 container mx-auto">
                 {projects.map((project, index) => (
                     <div key={index} className="space-y-4 cursor-pointer " onClick={() => router.push(project.navigate)}>
-                        <div className=" overflow-hidden rounded-xl mt-15">
-                            <img
+                        <div className="relative w-full h-[620px] rounded-xl overflow-hidden mt-15">
+                            <Image
                                 src={project.imageUrl}
                                 alt={project.title}
-                                className="w-full h-[620px] object-cover"
+                                fill
+                                className="object-cover"
                             />
                         </div>
                         <div>
