@@ -62,7 +62,7 @@ function Openings() {
                             <div className="sm:w-1/3 text-white text-[20px] sm:text-[24px] font-medium text-left">
                                 {job.title}
                             </div>
-                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-left">
+                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-center">
                                 {job.type}
                             </div>
                             <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-left sm:text-right">
