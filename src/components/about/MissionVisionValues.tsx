@@ -1,9 +1,13 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import hands from '../../../public/assets/images/about/hands.png';
 import visionImg from '../../../public/assets/images/about/hiker-top 1.png';
 import valuesImg from '../../../public/assets/images/about/business.png';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const contentData = {
     mission: {
@@ -27,8 +31,40 @@ const MissionVisionValues = () => {
     const [activeTab, setActiveTab] = useState('mission');
     const { heading, text, image } = contentData[activeTab as keyof typeof contentData];
 
+    const imageRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(imageRef.current, {
+                x: -100,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 80%',
+                },
+            });
+
+            gsap.from(contentRef.current, {
+                x: 100,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 80%',
+                },
+            });
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="bg-[#1A1818] py-5">
+        <section className="bg-[#1A1818] py-5" ref={sectionRef}>
             <div className="relative flex justify-center items-center">
                 {/* Gradient Glow */}
                 <div className="absolute inset-0 z-0 flex justify-center items-center w-full">
@@ -39,7 +75,7 @@ const MissionVisionValues = () => {
                 <div className="relative z-10 w-full bg-[#111010] rounded-[60px] sm:rounded-[120px] lg:rounded-[220px] flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 lg:px-10 xl:px-20 py-6 sm:py-8 lg:py-5 xl:py-10 shadow-xl max-w-none gap-y-6">
 
                     {/* Left - Image */}
-                    <div>
+                    <div ref={imageRef}>
                         <div className="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden">
                             <Image
                                 src={image}
@@ -67,7 +103,7 @@ const MissionVisionValues = () => {
                     </div>
 
                     {/* Right - Description */}
-                    <div className="lg:ml-4 max-w-sm text-center lg:text-left px-3 lg:px-0">
+                    <div ref={contentRef} className="lg:ml-4 max-w-sm text-center lg:text-left px-3 lg:px-0">
                         <p className="text-white text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[24px] leading-relaxed tracking-wide">
                             {text}
                         </p>
