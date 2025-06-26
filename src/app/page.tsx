@@ -8,6 +8,7 @@ import WorkingWithUs from "@/components/home/workingWithUs";
 import NewsInsight from "@/components/home/newsInsight";
 import WhyWeBest from "@/components/about/WhyWeBest";
 import AnimatedBackground from "@/components/home/AnimatedBackground";
+import Hire from "@/components/home/hire";
 // import { ScrollCardsParallax } from "@/components/Services/ScrollCardsParallax";
 // import DevelopmentProcess from "@/components/development-process/development-process";
 // import {Header} from "@/layouts/main/header";
@@ -32,6 +33,7 @@ import AnimatedBackground from "@/components/home/AnimatedBackground";
           <WhyWeBest/>
           <OurClient/>
           <WorkingWithUs/>
+          <Hire/>
           <NewsInsight/>
 
 
