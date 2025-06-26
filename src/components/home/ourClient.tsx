@@ -8,7 +8,6 @@ interface SwiperProps {
     className?: string;
     onSlideChange?: (params: { activeIndex: number }) => void;
     slidesPerView?: number;
-    navigation?: boolean;
     pagination?: { clickable: boolean };
     autoplay?: { delay: number };
 }
@@ -30,11 +29,6 @@ const Swiper: React.FC<SwiperProps> = ({
     const slideWidth = 100 / slidesPerView;
     const containerWidth = (childrenCount / slidesPerView) * 100;
 
-    const nextSlide = () => {
-        const newIndex = currentIndex >= totalSlides - 1 ? 0 : currentIndex + 1;
-        handleSlideChange(newIndex);
-    };
-
     const handleSlideChange = (index: number) => {
         setCurrentIndex(index);
         onSlideChange?.({ activeIndex: index });
@@ -49,9 +43,9 @@ const Swiper: React.FC<SwiperProps> = ({
                 return newIndex;
             });
         }, autoplay.delay);
-        return () => clearInterval(interval);
-    }, [autoplay.delay, totalSlides, onSlideChange]);
 
+        return () => clearInterval(interval);
+    }, [autoplay, totalSlides, onSlideChange]);
 
     return (
         <div className={`relative ${className}`} ref={swiperRef}>
@@ -185,8 +179,8 @@ const OurClient: React.FC = () => {
                                     <div className="flex items-center gap-2 mt-1">
                                         <span className="inline-block w-2 h-2 rounded-full bg-orange-400"></span>
                                         <span className="text-[#DDDDDD] sm:text-[16px] text-[14px]">
-                                            {project.tag}
-                                        </span>
+                      {project.tag}
+                    </span>
                                     </div>
                                 </div>
                             </div>
