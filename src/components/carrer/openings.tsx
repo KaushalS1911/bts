@@ -41,17 +41,17 @@ function Openings() {
                             className="bg-[#1A1818] border border-[#989898] rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row sm:items-left gap-4"
                         >
                             {/* Title on the left */}
-                            <div className="sm:w-1/3 text-white text-[20px] sm:text-[24px] font-medium sm:text-left text-left">
+                            <div className="sm:w-1/3 text-white text-[20px] sm:text-[24px] font-medium sm:text-left text-right">
                                 {job.title}
                             </div>
 
                             {/* Type in the center */}
-                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-left">
+                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] sm:text-center text-right">
                                 {job.type}
                             </div>
 
                             {/* Experience on the right */}
-                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-left sm:text-right">
+                            <div className="sm:w-1/3 text-gray-300 text-[18px] sm:text-[20px] text-right sm:text-right">
                                 {job.experience}
                             </div>
                         </div>
