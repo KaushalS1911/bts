@@ -19,7 +19,7 @@ const ContactUs = () => {
 
                 {/* Content Block */}
                 <div
-                    className="flex flex-col md:flex-row items-center justify-center mx-auto  rounded-[32px] overflow-hidden shadow-xl max-w-7xl">
+                    className="flex flex-col md:flex-row items-center justify-center mx-auto  rounded-[32px] overflow-hidden max-w-7xl">
                     {/* Left Image */}
                     <div className="relative w-full md:w-[45%] h-[320px] md:h-[505px]">
                         <Image
