@@ -41,7 +41,7 @@ export default function ContactIntro() {
     }, []);
 
     return (
-        <div className="bg-[#1A1818] relative overflow-hidden">
+        <div className="bg-[#1A1818] relative overflow-hidden lg:pt-30 pt-10">
             {/* Hero Section */}
             <div className="relative flex flex-col items-center justify-center min-h-[40vh] py-16 overflow-hidden">
                 <div className="absolute top-20 left-100 w-10 h-10">

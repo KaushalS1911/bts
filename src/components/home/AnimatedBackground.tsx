@@ -192,7 +192,7 @@ export const AnimatedBackground: React.FC = () => {
             />
 
             {/* Main content */}
-            <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+            <div className="relative z-20 flex flex-col items-center justify-center h-[92vh] px-4 text-center">
                 <div className="max-w-4xl mx-auto">
                     <h1 ref={headingRef} className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
                         Beyond Just <span
