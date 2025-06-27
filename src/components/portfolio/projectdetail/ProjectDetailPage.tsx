@@ -24,7 +24,7 @@ And what helps to achieve a good result? We will look at these issues and some o
 
 export default function ProjectDetailPage() {
     return (
-        <div className="bg-[#1A1818] text-white py-12 space-y-16 px-4 sm:px-6 lg:px-12">
+        <div className="bg-[#1A1818] text-white py-12 space-y-16 px-4 sm:px-6 lg:px-12 lg:pt-30 pt-10">
             <div className="container mx-auto space-y-16">
                 <header className="space-y-1 ">
                     <div className="md:text-[56px] sm:text-[52px] text-[34px] font-semibold">

@@ -1,9 +1,61 @@
 // components/HeroSection.tsx
 'use client';
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { AnimatedBackground } from './AnimatedBackground';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 export const HeroSection: React.FC = () => {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subheadingRef = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const ctx = gsap.context(() => {
+      if (headingRef.current) {
+        gsap.from(headingRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 80%",
+          },
+        });
+      }
+      if (subheadingRef.current) {
+        gsap.from(subheadingRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          delay: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: subheadingRef.current,
+            start: "top 85%",
+          },
+        });
+      }
+      if (buttonRef.current) {
+        gsap.from(buttonRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          delay: 0.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: buttonRef.current,
+            start: "top 90%",
+          },
+        });
+      }
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="relative min-h-screen bg-gray-900 overflow-hidden flex items-center justify-center">
       {/* Animated Background */}
@@ -16,7 +68,7 @@ export const HeroSection: React.FC = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-8">
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+          <h1 ref={headingRef} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
             Beyond Just{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">
               Code
@@ -26,13 +78,13 @@ export const HeroSection: React.FC = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p ref={subheadingRef} className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
             We design, develop, and deploy IT services that empower startups to enterprises—across industries and borders.
           </p>
           
           {/* CTA Button */}
           <div className="pt-1">
-            <button className="cursor-hover group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium cursor-pointer text-white bg-gradient-to-r from-red-500 to-orange-500 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-500/25 hover:scale-105">
+            <button ref={buttonRef} className="cursor-hover group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium cursor-pointer text-white bg-gradient-to-r from-red-500 to-orange-500 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-500/25 hover:scale-105">
               <span className="relative z-10 flex items-center">
                 Let&apos;s Started
                 <svg 

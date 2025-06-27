@@ -1,14 +1,21 @@
+'use client';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import worldMap from '../../../public/assets/images/about/map.png';
 import Bangladesh from '../../../public/assets/images/about/emojione_flag-for-bangladesh.png';
 import US from '../../../public/assets/images/about/emojione_flag-for-bangladesh (1).png';
 import Australia from '../../../public/assets/images/about/emojione_flag-for-bangladesh (2).png';
 import China from '../../../public/assets/images/about/emojione_flag-for-bangladesh (3).png';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const countries = [
     {
         name: 'Bangladesh',
-        flag: Bangladesh, // ✅ no braces
+        flag: Bangladesh,
         description: 'Event madness gathering innovators, & tech enthusiasts in Speed.',
     },
     {
@@ -28,17 +35,73 @@ const countries = [
     },
 ];
 
-
 export default function WorldNetworkSection() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const mapRef = useRef<HTMLDivElement>(null);
+    const cardsRef = useRef<HTMLDivElement[]>([]);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Title Animation
+            gsap.from(titleRef.current, {
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: titleRef.current,
+                    start: 'top 80%',
+                },
+            });
+
+            // Map Animation
+            gsap.from(mapRef.current, {
+                scale: 0.95,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: mapRef.current,
+                    start: 'top 85%',
+                },
+            });
+
+            // Grid Cards Animation
+            gsap.from(cardsRef.current, {
+                y: 40,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power3.out',
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 75%',
+                },
+            });
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="text-white py-30 px-4" style={{backgroundColor: '#262525'}}>
+        <section
+            ref={sectionRef}
+            className="text-white py-30 px-4"
+            style={{ backgroundColor: '#262525' }}
+        >
+            {/* Title */}
             <div className="text-center mb-10">
-                <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[48px] font-bold mb-13 leading-tight text-center">
-                    Our network & world <br/> work details.
+                <h2
+                    ref={titleRef}
+                    className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[48px] font-bold mb-13 leading-tight text-center"
+                >
+                    Our network & world <br /> work details.
                 </h2>
             </div>
 
-            <div className="flex justify-center mb-10">
+            {/* World Map */}
+            <div ref={mapRef} className="flex justify-center mb-10">
                 <div className="max-w-5xl w-full">
                     <Image
                         src={worldMap}
@@ -49,10 +112,12 @@ export default function WorldNetworkSection() {
                 </div>
             </div>
 
+            {/* Cards Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                {countries?.map((country, index) => (
+                {countries.map((country, index) => (
                     <div
                         key={index}
+                        ref={(el) => {cardsRef.current[index] = el!}}
                         className="bg-white text-black rounded-xl p-5 shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
                     >
                         <div className="flex items-center gap-x-2 mb-3 pb-3 border-b-[2px] border-b-[#C4C4C4A6]">

@@ -17,7 +17,7 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
   };
 
   return (
-    <>
+    <div className='z-9999'>
       {/* Mobile Overlay */}
       {isOpen && (
         <div
@@ -26,50 +26,50 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
         />
       )}
 
-      {/* Mobile Menu */}
-      <div
-        className={`
+        {/* Mobile Menu */}
+        <div
+            className={`
           lg:hidden fixed top-0 left-0 z-50 w-80 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
-      >
-        <div className="flex flex-col h-full">
-          {/* Mobile Header */}
-          <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-gray-700">
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              Your Brand
-            </h1>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+        >
+          <div className="flex flex-col h-full">
+            {/* Mobile Header */}
+            <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-gray-700">
+              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+                Your Brand
+              </h1>
+              <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-          {/* Navigation */}
-          <div className="flex-1 overflow-y-auto p-4">
-            <NavigationList
-              {...props}
-              onItemClick={handleItemClick}
-            />
-          </div>
+            {/* Navigation */}
+            <div className="flex-1 overflow-y-auto p-4">
+              <NavigationList
+                  {...props}
+                  onItemClick={handleItemClick}
+              />
+            </div>
 
-          {/* User Profile */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center space-x-3 text-sm text-gray-500 dark:text-gray-400">
-              <div className="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
-              <div>
-                <p className="font-medium">John Doe</p>
-                <p>john@example.com</p>
+            {/* User Profile */}
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-3 text-sm text-gray-500 dark:text-gray-400">
+                <div className="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                <div>
+                  <p className="font-medium">John Doe</p>
+                  <p>john@example.com</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       {/* Mobile Toggle Button - Export this to be used in Header */}
       <button
@@ -100,7 +100,7 @@ export const MobileNavigation: React.FC<NavigationProps> = (props) => {
           )}
         </svg>
       </button>
-    </>
+    </div>
   );
 };
 
