@@ -42,7 +42,7 @@ function Openings() {
     }, []);
 
     return (
-        <div ref={containerRef} className="bg-[#1A1818] p-4 sm:p-6 lg:p-8 lg:pt-30 pt-10">
+        <div ref={containerRef} className="bg-[#1A1818] p-4 sm:p-6 lg:p-8 pt-10">
             <div className="container mx-auto">
                 <div className="mb-6">
           <span className="inline-block bg-orange-500 text-white px-6 py-2 rounded-full text-sm font-medium">

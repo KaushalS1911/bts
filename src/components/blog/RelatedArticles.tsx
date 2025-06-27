@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { User, Calendar } from 'lucide-react';
-import img1 from '../../../public/assets/images/services/Article/Articlesimg1.jpg';
-import img2 from '../../../public/assets/images/services/Article/Articlesimg3.jpg';
-import img3 from '../../../public/assets/images/services/Article/Articlesimg2.jpg';
+import img1 from '../../../public/assets/images/blogDetails/Article/Articlesimg1.jpg';
+import img2 from '../../../public/assets/images/blogDetails/Article/Articlesimg3.jpg';
+import img3 from '../../../public/assets/images/blogDetails/Article/Articlesimg2.jpg';
 import type { StaticImageData } from 'next/image';
 
 interface Article {
@@ -46,7 +46,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
                                                              articles = defaultArticles
                                                          }) => {
     return (
-        <div className="bg-[#1a1818] py-16 px-4 sm:px-6 lg:px-8 rounded-lg">
+        <div className="bg-[#1a1818] py-16 px-4 sm:px-6 lg:px-8">
             <div className="container mx-auto">
                 <h2 className="text-white text-[24px] sm:text-[27px] font-bold leading-[100%] tracking-[0] mb-6">
                     Related Articles

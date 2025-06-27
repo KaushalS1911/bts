@@ -1,6 +1,6 @@
 import React from 'react';
-import Blogs from '@/components/Services/Blogs'
-import RelatedArticles from "@/components/Services/RelatedArticles";
+import Blogs from '@/components/blog/Blogs'
+import RelatedArticles from "@/components/blog/RelatedArticles";
 
 function Page() {
     return (

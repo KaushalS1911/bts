@@ -39,7 +39,7 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section className="bg-[#1A1818] text-white py-20 px-4 lg:pt-30 pt-10">
+        <section className="bg-[#1A1818] text-white py-20 px-4 lg:pt-50 pt-10">
             <div className="container mx-auto text-center">
                 <h1
                     ref={headingRef}

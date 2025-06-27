@@ -87,14 +87,14 @@ export default function WorldNetworkSection() {
     return (
         <section
             ref={sectionRef}
-            className="text-white py-30 px-4"
+            className="text-white pt-30 pb-20 px-4"
             style={{ backgroundColor: '#262525' }}
         >
             {/* Title */}
             <div className="text-center mb-10">
                 <h2
                     ref={titleRef}
-                    className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[48px] font-bold mb-13 leading-tight text-center"
+                    className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[48px] font-bold mb-18 leading-tight text-center"
                 >
                     Our network & world <br /> work details.
                 </h2>

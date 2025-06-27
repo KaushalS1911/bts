@@ -7,7 +7,7 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ContactIntro() {
+export default function ServiceIntro() {
     const headingRef = useRef<HTMLHeadingElement>(null);
     const paragraphRef = useRef<HTMLParagraphElement>(null);
     const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -101,11 +101,11 @@ export default function ContactIntro() {
                 <div className="relative z-10 flex flex-col items-center justify-center text-center">
                     <h1 ref={headingRef}
                         className="text-[36px] sm:text-[44px] md:text-[48px] lg:text-[56px] leading-[110%] font-semibold text-white text-center mb-4">
-                        Let’s Build Something Beyond.
+                        Web Development Services
                     </h1>
                     <p ref={paragraphRef}
                        className="text-[18px] sm:text-[22px] md:text-[24px] leading-[110%] font-normal text-gray-300 text-center max-w-2xl mx-auto">
-                        Have a project in mind or just want to say hello? We’d love to hear from you.
+                        We build secure, responsive, and scalable websites tailored to your business goals and user needs — using modern tech stacks and proven methodologies.
                     </p>
                 </div>
             </div>

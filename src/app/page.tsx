@@ -13,39 +13,38 @@ import Hire from "@/components/home/hire";
 // import DevelopmentProcess from "@/components/development-process/development-process";
 // import {Header} from "@/layouts/main/header";
 
- const App: React.FC = () => {
-  return (
-      <>
+const App: React.FC = () => {
+    return (
+        <>
 
-      <div className="relative">
-      {/* Custom Cursor */}
-      {/*<CustomCursor />*/}
+            <div className="relative">
+                {/* Custom Cursor */}
+                {/*<CustomCursor />*/}
 
-      {/* Header */}
-      {/* <Header />*/}
+                {/* Header */}
+                {/* <Header />*/}
 
-      {/* Hero Section */}
-      {/*<HeroSection />*/}
-          <AnimatedBackground/>
-          <Busines/>
-          <WhatWeDeliver/>
-          {/*<IndustriesWeserve/>*/}
-          <WhyWeBest/>
-          <OurClient/>
-          <WorkingWithUs/>
-          <Hire/>
-          <NewsInsight/>
+                {/* Hero Section */}
+                {/*<HeroSection />*/}
+                <AnimatedBackground/>
+                <Busines/>
+                <WhatWeDeliver/>
+                {/*<IndustriesWeserve/>*/}
+                <WhyWeBest/>
+                <OurClient/>
+                <WorkingWithUs/>
+                <Hire/>
+                <NewsInsight/>
 
 
+                {/* Parallax Cards Section */}
+                {/*  <ScrollCardsParallax />*/}
 
-      {/* Parallax Cards Section */}
-      {/*  <ScrollCardsParallax />*/}
+                {/*<DevelopmentProcess />*/}
 
-        {/*<DevelopmentProcess />*/}
-
-    </div>
-      </>
-  );
+            </div>
+        </>
+    );
 };
 
 

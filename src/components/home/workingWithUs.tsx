@@ -1,7 +1,7 @@
 'use client';
 
 import React, {useState, useRef, useEffect} from 'react';
-import {ChevronLeft, ChevronRight} from 'lucide-react';
+import { MoveRight , MoveLeft} from 'lucide-react';
 import Image from "next/image";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
@@ -150,25 +150,27 @@ const WorkingWithUs: React.FC = () => {
                 <div className="relative">
                     <button
                         onClick={prevSlide}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-gray-700 rounded-full p-3 transition-colors duration-200"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-white rounded-full p-3 transition-colors duration-200 group"
                         aria-label="Previous testimonial"
                     >
-                        <ChevronLeft className="w-6 h-6"/>
+                        <MoveLeft
+                            className="w-6 h-6 text-white transition-colors duration-200 group-hover:text-[#EE2A6D]"/>
                     </button>
 
                     <button
                         onClick={nextSlide}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-gray-700 rounded-full p-3 transition-colors duration-200"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-white rounded-full p-3 transition-colors duration-200 group"
                         aria-label="Next testimonial"
                     >
-                        <ChevronRight className="w-6 h-6"/>
+                        <MoveRight
+                            className="w-6 h-6 text-white transition-colors duration-200 group-hover:text-[#EE2A6D]"/>
                     </button>
 
-                        <div className="text-center mb-16 px-10 sm:px-16">
-                            <div className="mb-8">
-                                <div className="mb-4 flex justify-start">
-                                    <Image
-                                        src="/assets/images/home/Vector (9).png"
+                    <div className="text-center mb-16 px-10 sm:px-16">
+                        <div className="mb-8">
+                            <div className="mb-4 flex justify-start">
+                                <Image
+                                    src="/assets/images/home/Vector (9).png"
                                         alt="vector"
                                         width={15}
                                         height={15}
