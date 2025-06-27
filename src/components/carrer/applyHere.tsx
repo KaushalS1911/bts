@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from 'next/image';
+import shedow from '../../../public/assets/images/Ellipse 433.png'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,10 +109,18 @@ function ApplyHereForm() {
     }, []);
 
     return (
-        <div ref={formRef} className="bg-[#1A1818] py-12 px-4 sm:px-6 lg:px-8">
+        <div ref={formRef} className="bg-[#1A1818] py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl container mx-auto">
                 {/* Title */}
-                <div ref={titleRef} className="text-center mb-12 px-4">
+                <div ref={titleRef} className="relative text-center mb-12 px-4">
+                    <div className="absolute -top-10 left-60 w-40 h-40 opacity-40 z-0">
+                        <Image
+                            src={shedow}
+                            alt="decoration"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
                     <h2 className="text-[36px] sm:text-4xl md:text-5xl lg:text-[48px] font-[700] text-white mb-1 leading-tight">
                         Apply here!
                     </h2>
@@ -208,7 +218,7 @@ function ApplyHereForm() {
                     </div>
 
                     {/* Button */}
-                    <div ref={buttonRef} className="flex justify-center pt-8">
+                    <div ref={buttonRef} className="flex justify-center pt-5">
                         <button
                             onClick={handleSubmit}
                             className="bg-gradient-to-r from-[#F2682F] to-[#EE2A6D] text-white font-semibold py-3 px-20 rounded-full transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
