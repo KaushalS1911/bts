@@ -173,7 +173,7 @@ export default function ProjectDetailPage() {
     const {sections} = project;
 
     return (
-        <div className="bg-[#1A1818] text-white py-5 px-4 sm:px-6 lg:px-12">
+        <div className="bg-[#1A1818] text-white py-5 px-4 sm:px-6 lg:px-12 lg:pt-30 pt-4">
             <div className="container mx-auto sm:space-y-16 space-y-9">
                 {/* Header */}
                 <header className="space-y-1">

@@ -94,7 +94,7 @@ const ProjectShowcase: React.FC = () => {
     }, []);
 
     return (
-        <section className="bg-[#1A1818] text-white pb-5 px-4 sm:px-6 lg:px-12 lg:pt-30 pt-10">
+        <section className="bg-[#1A1818] text-white pb-5 px-4 sm:px-6 lg:px-12 lg:pt-30 pt-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 container mx-auto">
                 {projects.map((project, index) => (
                     <div
