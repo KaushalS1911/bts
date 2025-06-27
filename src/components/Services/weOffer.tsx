@@ -30,10 +30,10 @@ function WeOffer() {
     ];
 
     return (
-        <div className="bg-[#1A1818] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#1A1818] py-12 px-4 sm:px-6 lg:px-8">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[48px] font-bold mb-13 leading-tight text-center">
+                    <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[48px] font-bold mb-13 leading-tight text-center text-white">
                         Web Development Services We Offer
                     </h2>
                 </div>

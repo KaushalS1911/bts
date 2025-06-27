@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
     {
@@ -15,25 +18,78 @@ const steps = [
 ];
 
 export default function DevelopmentProcess() {
+    const headingRef = useRef(null);
+    const paraRef = useRef(null);
+    const contentRef = useRef(null);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const ctx = gsap.context(() => {
+            gsap.from(headingRef.current, {
+                y: 50,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: headingRef.current,
+                    start: "top 85%",
+                },
+            });
+
+            gsap.from(paraRef.current, {
+                y: 30,
+                opacity: 0,
+                delay: 0.2,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: paraRef.current,
+                    start: "top 90%",
+                },
+            });
+
+            gsap.from(contentRef.current, {
+                y: 60,
+                opacity: 0,
+                duration: 1.5,
+                delay: 0.3,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: contentRef.current,
+                    start: "top 85%",
+                },
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <div className="bg-black text-white py-20 pl-4 ">
+        <div className="bg-[#1A1818] text-white py-20 pl-4">
             {/* Heading Section */}
-            <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <div className="text-[36px] sm:text-[44px] md:text-[48px] lg:text-[56px] leading-[110%] font-semibold text-white text-center mb-4">
+                <h2 ref={headingRef} className="text-3xl md:text-5xl font-bold mb-4">
                     Our Development Process
                 </h2>
-                <p className="text-md md:text-lg max-w-xl mx-auto text-gray-400 leading-relaxed">
+                <p
+                    ref={paraRef}
+                    className="text-[18px] sm:text-[20px] leading-[24px] font-medium tracking-normal text-gray-300 text-center max-w-2xl mx-auto"
+                >
                     From concept to code — we follow a proven, agile-driven process to
                     deliver impactful, high-performing digital solutions.
                 </p>
             </div>
 
             {/* Content Section */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center ">
+            <div
+                ref={contentRef}
+                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center"
+            >
                 {/* Step Text */}
                 <div className="flex flex-col sm:flex-row items-start gap-4 md:col-span-8 col-span-12 xl:ml-5 lg:ml-3 md:ml-3 sm:ml-2 ml-2">
                     {/* Step Number Image */}
-                    <div className=" ">
+                    <div>
                         <Image
                             src="/assets/images/service/one.png"
                             alt="Step 1"
@@ -52,7 +108,6 @@ export default function DevelopmentProcess() {
                             {steps[0].description}
                         </p>
                     </div>
-
                 </div>
 
                 {/* Step Icon Image */}
@@ -62,7 +117,7 @@ export default function DevelopmentProcess() {
                         alt="Discovery Icon"
                         width={542}
                         height={241}
-                        className="w-full max-w-[542px] h-auto object-contain"
+                        className="max-w-[542px] h-auto object-contain"
                     />
                 </div>
             </div>

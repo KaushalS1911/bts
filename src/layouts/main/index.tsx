@@ -12,7 +12,13 @@ const navigationItems: NavItem[] = [
     id: 'home',
     label: 'Home',
     href: '/'
-  },{
+  },
+  {
+    id: 'about',
+    label: 'About',
+    href: '/about'
+  },
+  {
     id: 'services',
     label: 'Services',
     href: '/services'
@@ -21,11 +27,6 @@ const navigationItems: NavItem[] = [
     id: 'portfolio',
     label: 'Portfolio',
     href: '/portfolio'
-  },
-  {
-    id: 'about',
-    label: 'About',
-    href: '/about'
   },
   {
     id: 'blogDetails',

@@ -13,10 +13,10 @@ function Page() {
             <ServiceIntro/>
             <Project/>
             <TechnicalProficiency/>
-            <WorkingWithUs/>
-            <OurClient/>
             <WeOffer/>
             <DevelopmentProcess/>
+            <WorkingWithUs/>
+            <OurClient/>
         </div>
     );
 }
