@@ -129,7 +129,7 @@ const Blogs: React.FC = () => {
     const [activeSection, setActiveSection] = useState(blogData.sectionsList[0]);
 
     return (
-        <div className="bg-[#1a1818] text-white px-4 pt-16 md:px-8 lg:px-24">
+        <div className="bg-[#1a1818] text-white px-4 md:px-8 lg:px-24 lg:pt-30 pt-10">
             <div className="container mx-auto">
                 <div
                     onClick={() => window.history.back()}

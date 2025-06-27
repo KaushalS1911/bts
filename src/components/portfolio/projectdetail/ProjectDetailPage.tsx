@@ -228,6 +228,7 @@ export default function ProjectDetailPage() {
                             />
                         </div>
                     </div>
+
                 </section>
 
                 {/* About */}

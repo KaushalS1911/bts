@@ -2,6 +2,10 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Breakpoint {
     [key: number]: {
@@ -59,21 +63,20 @@ const Swiper: React.FC<SwiperProps> = ({
 
     // Handle window resize
     useEffect(() => {
+
         const handleResize = () => {
             const newSlidesPerView = getCurrentSlidesPerView();
             if (newSlidesPerView !== currentSlidesPerView) {
                 setCurrentSlidesPerView(newSlidesPerView);
-                // Reset to first slide when breakpoint changes
                 setCurrentIndex(0);
             }
         };
 
-        // Set initial value
         handleResize();
-
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [breakpoints, slidesPerView, currentSlidesPerView]);
+    }, [breakpoints, slidesPerView, currentSlidesPerView]); // ✅ clean deps
+
 
     // Calculate total slides that can be shown (how many times we can slide)
     const totalSlides = Math.max(1, childrenCount - currentSlidesPerView + 1);
@@ -190,6 +193,58 @@ const projects: Project[] = [
 ];
 
 const OurClient: React.FC = () => {
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const subheadingRef = useRef<HTMLParagraphElement>(null);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const ctx = gsap.context(() => {
+            if (headingRef.current) {
+                gsap.from(headingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: headingRef.current,
+                        start: "top 80%",
+                    },
+                });
+            }
+            if (subheadingRef.current) {
+                gsap.from(subheadingRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    delay: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: subheadingRef.current,
+                        start: "top 85%",
+                    },
+                });
+            }
+            cardRefs.current.forEach((ref, idx) => {
+                if (ref) {
+                    gsap.from(ref, {
+                        opacity: 0,
+                        y: 60,
+                        scale: 0.95,
+                        duration: 0.8,
+                        delay: 0.1 * idx,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: ref,
+                            start: "top 90%",
+                        },
+                    });
+                }
+            });
+        });
+        return () => ctx.revert();
+    }, []);
+
     return (
         <div className="relative bg-[#1A1818] py-16 px-4 overflow-hidden">
             <div className="absolute left-8 top-16 pointer-events-none leading-none z-0 hidden md:block opacity-20">
@@ -203,10 +258,10 @@ const OurClient: React.FC = () => {
             </div>
 
             <div className="relative z-10 max-w-6xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
+                <h2 ref={headingRef} className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
                     Our Client Success Gallery
                 </h2>
-                <p className="text-center text-gray-300 mb-12 text-base md:text-lg">
+                <p ref={subheadingRef} className="text-center text-gray-300 mb-12 text-base md:text-lg">
                     A glimpse into the transformative journeys we&apos;ve been part of
                 </p>
 
@@ -229,7 +284,10 @@ const OurClient: React.FC = () => {
                 >
                     {projects.map((project, idx) => (
                         <SwiperSlide key={idx}>
-                            <div className="w-full rounded-2xl shadow-lg flex flex-col items-center">
+                            <div
+                                ref={el => {cardRefs.current[idx] = el}}
+                                className="w-full rounded-2xl shadow-lg flex flex-col items-center"
+                            >
                                 <div className="max-w-[400px] w-full h-[300px] rounded-xl overflow-hidden mb-4 flex items-center justify-center bg-[#f3ede6] relative">
                                     <Image
                                         src={project.image}

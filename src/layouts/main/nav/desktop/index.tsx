@@ -1,6 +1,6 @@
-'use client'; // required for useRouter in app directory
+'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { NavigationProps } from '../../types/navigation';
 import Image from 'next/image';
@@ -8,12 +8,29 @@ import Image from 'next/image';
 export const DesktopNavigation: React.FC<NavigationProps> = ({
                                                                  items,
                                                                  currentPath,
-                                                                 onItemClick
+                                                                 onItemClick,
                                                              }) => {
     const router = useRouter();
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    // Toggle background on scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50); // adjust the value if needed
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <header className="hidden lg:block bg-[#1A1818] text-white sticky top-0 z-50 py-4">
+        <header
+            className={`hidden lg:block fixed w-full top-0 z-50 py-4 transition-colors duration-300 ${
+                isScrolled
+                    ? 'bg-white/10 backdrop-blur-md border-b border-white/10 shadow-md'
+                    : 'bg-transparent'
+            } text-white`}
+        >
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
