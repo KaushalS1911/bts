@@ -103,43 +103,39 @@ const WhatMakesUs = () => {
             </div>
 
             {/* ✅ Items */}
-            <div className="mt-12 space-y-10 max-w-4xl mx-auto px-2 sm:px-4 relative z-10">
-                {[
-                    {
-                        title: 'Beyond the Brief',
-                        desc: 'We dive deep to understand the ‘why’ behind your project.',
-                        color: '#FAE387'
-                    },
-                    {
-                        title: 'Beyond the Code',
-                        desc: 'We build with business, brand, and user in mind.',
-                        color: '#FF92D3'
-                    },
-                    {
-                        title: 'Beyond the Launch',
-                        desc: 'We stay with you long after the product goes live.',
-                        color: '#81BAFF'
-                    }
-                ].map((item, index) => (
-                    <div
-                        key={index}
-                        ref={(el) => { itemRefs.current[index] = el! }}
-                        className={`flex justify-start sm:justify-${index === 1 ? 'center' : index === 2 ? 'end' : 'start'} group cursor-pointer`}
-                    >
-                        <div>
-                            <h3
-                                className={`text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] group-hover:text-[${item.color}] transition-colors duration-300`}
-                            >
-                                {item.title}
-                            </h3>
-                            <p
-                                className={`text-[#A3A2A2] sm:ms-10 mt-1 text-sm sm:text-base group-hover:text-[${item.color}] transition-colors duration-300`}
-                            >
-                                {item.desc}
-                            </p>
-                        </div>
+            <div className="mt-12 space-y-10 max-w-4xl mx-auto px-2 sm:px-4">
+                <div ref={(el) => {itemRefs.current[0] = el!}} className="flex justify-start group cursor-pointer">
+                    <div>
+                        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] group-hover:text-[#FAE387] transition-colors duration-300">
+                            Beyond the Brief
+                        </h3>
+                        <p className="text-[#A3A2A2] sm:ms-10 mt-1 text-sm sm:text-base group-hover:text-[#FAE387] transition-colors duration-300">
+                            We dive deep to understand the ‘why’ behind your project.
+                        </p>
                     </div>
-                ))}
+                </div>
+
+                <div ref={(el) => {itemRefs.current[1] = el!}} className="flex justify-start sm:justify-center group cursor-pointer">
+                    <div>
+                        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] group-hover:text-[#FF92D3] transition-colors duration-300">
+                            Beyond the Code
+                        </h3>
+                        <p className="text-[#A3A2A2] sm:ms-10 mt-1 text-sm sm:text-base group-hover:text-[#FF92D3] transition-colors duration-300">
+                            We build with business, brand, and user in mind.
+                        </p>
+                    </div>
+                </div>
+
+                <div ref={(el) => {itemRefs.current[2] = el!}} className="flex justify-start sm:justify-end group cursor-pointer">
+                    <div>
+                        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold text-[#A3A2A2] group-hover:text-[#81BAFF] transition-colors duration-300">
+                            Beyond the Launch
+                        </h3>
+                        <p className="text-[#A3A2A2] sm:ms-10 mt-1 text-sm sm:text-base group-hover:text-[#81BAFF] transition-colors duration-300">
+                            We stay with you long after the product goes live.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
     );
