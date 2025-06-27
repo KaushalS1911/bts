@@ -54,7 +54,7 @@ const AboutIntro = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="bg-[#111010] py-30 px-4 text-white">
+        <section ref={sectionRef} className="bg-[#111010] pt-30 pb-10 px-4 text-white">
             <div className="container mx-auto px-4">
                 {/* Heading */}
                 <div className="container mx-auto px-4" ref={titleRef}>

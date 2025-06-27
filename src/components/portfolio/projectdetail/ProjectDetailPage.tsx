@@ -208,26 +208,29 @@ export default function ProjectDetailPage() {
                     >
                         {sections.projectStory.content}
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-9">
-                        <div ref={imgLeftRef}>
-                            <Image
-                                src={sections.projectStory.images[1]}
-                                alt="Project image 1"
-                                width={555}
-                                height={600}
-                                className="w-full h-[600px] object-cover rounded-[16px]"
-                            />
-                        </div>
-                        <div ref={imgRightRef}>
-                            <Image
-                                src={sections.projectStory.images[2]}
-                                alt="Project image 2"
-                                width={555}
-                                height={600}
-                                className="w-full h-[600px] object-cover rounded-[16px]"
-                            />
+                    <div className="flex justify-center">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-9">
+                            <div ref={imgLeftRef}>
+                                <Image
+                                    src={sections.projectStory.images[1]}
+                                    alt="Project image 1"
+                                    width={555}
+                                    height={600}
+                                    className="w-[555px] h-[600px] object-cover rounded-[16px]"
+                                />
+                            </div>
+                            <div ref={imgRightRef}>
+                                <Image
+                                    src={sections.projectStory.images[2]}
+                                    alt="Project image 2"
+                                    width={555}
+                                    height={600}
+                                    className="w-[555px] h-[600px] object-cover rounded-[16px]"
+                                />
+                            </div>
                         </div>
                     </div>
+
 
                 </section>
 
