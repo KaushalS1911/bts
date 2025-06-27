@@ -44,7 +44,7 @@ interface MainLayoutProps {
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const [currentPath, setCurrentPath] = useState('/services');
+  const [currentPath, setCurrentPath] = useState('/');
 
   const handleNavItemClick = (item: NavItem) => {
     setCurrentPath(item.href);
