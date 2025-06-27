@@ -1,5 +1,5 @@
 // import { CustomCursor } from "@/components/home/CustomCursor";
-import { HeroSection } from "@/components/home/HeroSection";
+// import { HeroSection } from "@/components/home/HeroSection";
 import Busines from "@/components/home/business";
 import WhatWeDeliver from "@/components/home/whatWeDeliver";
 // import IndustriesWeserve from "@/components/home/industriesWeserve";

@@ -194,7 +194,7 @@ const WorkingWithUs: React.FC = () => {
                             return (
                                 <div
                                     key={`${testimonial.id}-${index}`}
-                                    ref={el => (avatarRefs.current[index] = el)}
+                                    ref={el => {avatarRefs.current[index] = el}}
                                     className={`flex flex-col items-center transition-all duration-300 ${
                                         isCenter
                                             ? 'transform scale-110'

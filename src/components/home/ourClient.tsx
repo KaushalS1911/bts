@@ -5,6 +5,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 interface Breakpoint {
     [key: number]: {
         slidesPerView: number;
@@ -61,21 +63,20 @@ const Swiper: React.FC<SwiperProps> = ({
 
     // Handle window resize
     useEffect(() => {
+
         const handleResize = () => {
             const newSlidesPerView = getCurrentSlidesPerView();
             if (newSlidesPerView !== currentSlidesPerView) {
                 setCurrentSlidesPerView(newSlidesPerView);
-                // Reset to first slide when breakpoint changes
                 setCurrentIndex(0);
             }
         };
 
-        // Set initial value
         handleResize();
-
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [breakpoints, slidesPerView, currentSlidesPerView]);
+    }, [breakpoints, slidesPerView, currentSlidesPerView]); // ✅ clean deps
+
 
     // Calculate total slides that can be shown (how many times we can slide)
     const totalSlides = Math.max(1, childrenCount - currentSlidesPerView + 1);
@@ -284,7 +285,7 @@ const OurClient: React.FC = () => {
                     {projects.map((project, idx) => (
                         <SwiperSlide key={idx}>
                             <div
-                                ref={el => (cardRefs.current[idx] = el)}
+                                ref={el => {cardRefs.current[idx] = el}}
                                 className="w-full rounded-2xl shadow-lg flex flex-col items-center"
                             >
                                 <div className="max-w-[400px] w-full h-[300px] rounded-xl overflow-hidden mb-4 flex items-center justify-center bg-[#f3ede6] relative">
