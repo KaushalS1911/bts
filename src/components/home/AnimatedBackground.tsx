@@ -252,7 +252,7 @@ export const AnimatedBackground: React.FC = () => {
             </div>
 
             {/* Main Content */}
-            <main className="relative z-20 flex flex-col items-center justify-center h-[92vh] px-4 text-center">
+            <main className="relative z-20 flex flex-col items-center justify-center h-screen h-[92vh] px-4 text-center">
                 <div className="max-w-4xl mx-auto space-y-8">
                     <h1
                         ref={headingRef}
