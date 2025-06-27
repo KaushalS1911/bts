@@ -6,7 +6,6 @@ function Page() {
     return (
         <div>
             <ProjectShowcase/>
-            <ExploreProjects/>
         </div>
     );
 }
