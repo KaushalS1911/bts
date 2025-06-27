@@ -94,7 +94,7 @@ const ProjectShowcase: React.FC = () => {
     }, []);
 
     return (
-        <section className="bg-[#1A1818] text-white py-12 px-4 sm:px-6 lg:px-12">
+        <section className="bg-[#1A1818] text-white pb-5 px-4 sm:px-6 lg:px-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 container mx-auto">
                 {projects.map((project, index) => (
                     <div
@@ -103,7 +103,7 @@ const ProjectShowcase: React.FC = () => {
                         className="space-y-4 cursor-pointer opacity-0 transform"
                         onClick={() => router.push(project.navigate)}
                     >
-                        <div className="relative w-full h-[620px] rounded-xl overflow-hidden mt-15">
+                        <div className="relative w-full h-[620px] rounded-xl overflow-hidden md:mt-6 mt-2">
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
@@ -142,7 +142,7 @@ const ProjectShowcase: React.FC = () => {
             {/* CTA Section */}
             <div
                 ref={ctaRef}
-                className="mt-35 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 container mx-auto text-white border border-white opacity-0 transform"
+                className="lg:mt-15  mt-13 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 container mx-auto text-white border border-white opacity-0 transform"
             >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
                     <h2 className="text-[32px] sm:text-[36px] md:text-[40px] font-bold">
