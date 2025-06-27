@@ -1,13 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import img1 from '../../../public/assets/images/services/blog/blogimg1.png';
-import img2 from '../../../public/assets/images/services/blog/author.png';
-import img3 from '../../../public/assets/images/services/blog/linkedin.png';
-import img4 from '../../../public/assets/images/services/blog/facebook.png';
-import img5 from '../../../public/assets/images/services/blog/twitter.png';
-import img6 from '../../../public/assets/images/services/blog/linkedin1.png';
-import img7 from '../../../public/assets/images/services/blog/blogimg2.png';
+import img1 from '../../../public/assets/images/blogDetails/blog/blogimg1.png';
+import img2 from '../../../public/assets/images/blogDetails/blog/author.png';
+import img3 from '../../../public/assets/images/blogDetails/blog/linkedin.png';
+import img4 from '../../../public/assets/images/blogDetails/blog/facebook.png';
+import img5 from '../../../public/assets/images/blogDetails/blog/twitter.png';
+import img6 from '../../../public/assets/images/blogDetails/blog/linkedin1.png';
+import img7 from '../../../public/assets/images/blogDetails/blog/blogimg2.png';
 
 interface ContentSection {
     heading: string;
@@ -44,10 +44,10 @@ const highlightPhrases = (text: string) => {
             /written by humans or created using artificial intelligence/g,
             '<span class="text-orange-400 font-semibold">$&</span>'
         )
-        .replace(/E-E-A-T principles/g, '<span class="text-orange-400 font-semibold">$&</span>')
+        .replace(/E-E-A-T principles/g, '<span class="text-orange-400 font-semibold">$&.</span>')
         .replace(/\bChatGPT\b/g, '<span class="text-orange-400 font-semibold">$&</span>')
         .replace(/in accordance with TechTarget/g, '<span class="text-orange-400 font-semibold">$&</span>')
-        .replace(/Trust me on this/g, '<span class="text-orange-400 font-semibold">$&</span>');
+        .replace(/Trust me on this/g, '<span class="text-orange-400 font-semibold">$&</span>')
 };
 
 const blogData: BlogData = {
@@ -129,11 +129,11 @@ const Blogs: React.FC = () => {
     const [activeSection, setActiveSection] = useState(blogData.sectionsList[0]);
 
     return (
-        <div className="bg-[#1a1818] text-white px-4 pt-16 md:px-8 lg:px-24">
+        <div className="bg-[#1a1818] text-white px-4 md:px-8 lg:px-24 lg:pt-30 pt-10">
             <div className="container mx-auto">
                 <div
                     onClick={() => window.history.back()}
-                    className="inline-flex items-center gap-2 bg-[#F6F6F6] text-[#0C1A3B] text-[14px] font-medium px-4 py-2 rounded-lg shadow-sm cursor-pointer w-fit mb-2"
+                    className="inline-flex items-center gap-2 bg-[#F6F6F6] text-[#0C2253] text-[14px] font-medium px-4 py-2 rounded-lg shadow-sm cursor-pointer w-fit mb-2"
                 >
                     <span className="text-xl">{'>'}</span>
                     Blogs
@@ -148,7 +148,7 @@ const Blogs: React.FC = () => {
                                         <span className="w-2.5 h-2.5 bg-[#0C1A3B] rounded-full"></span>
                                         {blogData.category}
                                     </div>
-                                    <h1 className="font-bold text-[20px] md:text-[27px] leading-[100%] tracking-[0] mb-2 md:mb-4 text-white">
+                                    <h1 className="font-bold text-[20px] md:text-[27px] leading-[130%] tracking-[0] mb-2 md:mb-4 text-white">
                                         {blogData.title}
                                     </h1>
                                     <p className="font-normal text-[13px] md:text-[14px] text-gray-300">
@@ -169,21 +169,22 @@ const Blogs: React.FC = () => {
                                     </h2>
                                     {section.image && (
                                         <div className="mb-4">
-                                            <Image src={section.image} alt={section.heading} className="w-full h-auto rounded-lg border border-white/10" />
+                                            <Image src={section.image} alt={section.heading} className="w-full h-auto rounded-lg border mb-10 border-white/10" />
                                         </div>
                                     )}
                                     {section.content.map((para, pIdx) => (
                                         <p
                                             key={pIdx}
-                                            className="text-gray-300 mb-4 leading-relaxed text-justify"
-                                            dangerouslySetInnerHTML={{ __html: highlightPhrases(para) }}
+                                            className="text-white mb-7 text-justify font-normal text-[18px] leading-[150%] tracking-[0%]"
+                                            dangerouslySetInnerHTML={{__html: highlightPhrases(para)}}
                                         />
                                     ))}
                                 </div>
                             ))}
                         </div>
 
-                        <div className="mt-10 bg-gradient-to-r from-[#A2390D] to-[#BD4B1A] rounded-lg p-5 flex items-center justify-between flex-wrap gap-4">
+                        <div
+                            className="mt-10 bg-gradient-to-r from-[#A2390D] to-[#BD4B1A] rounded-lg p-6 flex items-center justify-between flex-wrap gap-4">
                             <p className="text-white text-base font-semibold">Like what you see? Share with a friend.</p>
                             <div className="flex gap-4">
                                 <Image src={img4} alt="Facebook" width={24} height={24} className="cursor-pointer" />
@@ -197,14 +198,14 @@ const Blogs: React.FC = () => {
 
                     {/* Sidebar */}
                     <div className="space-y-6">
-                        <div className="bg-[#A2390D] text-white rounded-xl p-6 sm:p-8">
+                        <div className="bg-[#A2390D] text-white rounded-xl p-6 sm:p-7">
                             <div className="relative w-[100px] h-[100px] mb-4">
                                 <Image src={author.image} alt={author.name} className="rounded-md" />
                                 <div className="absolute bottom-1 right-[-40px] sm:right-[-50px]">
                                     <Image src={author.linkedinBadge} alt="LinkedIn" width={30} height={30} />
                                 </div>
                             </div>
-                            <h3 className="text-[20px] font-semibold mb-5">{author.name}</h3>
+                            <h3 className="text-[20px] font-semibold mb-3">{author.name}</h3>
                             <p className="text-[20px] font-normal text-white mb-4">{author.title}</p>
                             <hr className="border border-white/20 mb-4" />
                             <p className="text-[14px] text-white/90">{author.description}</p>
