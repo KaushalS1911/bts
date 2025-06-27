@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import gsap from "gsap";
@@ -8,7 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- Animated background hook ---
 interface FloatingShape {
     x: number;
     y: number;
@@ -26,7 +25,7 @@ const useCanvasAnimation = () => {
     const initializeCanvas = useCallback((canvas: HTMLCanvasElement) => {
         const dpr = window.devicePixelRatio || 1;
         const width = window.innerWidth;
-        const height = document.body.scrollHeight; // ✅ FIXED: Use full scroll height
+        const height = document.body.scrollHeight;
 
         canvas.width = width * dpr;
         canvas.height = height * dpr;
@@ -34,14 +33,12 @@ const useCanvasAnimation = () => {
         canvas.style.height = `${height}px`;
 
         const ctx = canvas.getContext("2d");
-        if (ctx) ctx.scale(dpr, dpr); // scale context to match DPR
+        if (ctx) ctx.scale(dpr, dpr);
 
         return { width, height };
     }, []);
 
-
-
-    const createShape = useCallback(({ width, height }: { width: number; height: number; }): FloatingShape => ({
+    const createShape = useCallback(({ width, height }: { width: number; height: number }): FloatingShape => ({
         x: Math.random() * width,
         y: Math.random() * height,
         size: Math.random() * 3 + 1,
@@ -50,7 +47,7 @@ const useCanvasAnimation = () => {
         opacity: Math.random() * 0.8 + 0.2,
     }), []);
 
-    const createShapes = useCallback((dims: { width: number; height: number; }) => {
+    const createShapes = useCallback((dims: { width: number; height: number }) => {
         shapesRef.current = Array.from({ length: 100 }, () => createShape(dims));
     }, [createShape]);
 
@@ -113,7 +110,6 @@ const useCanvasAnimation = () => {
 
     return { canvasRef, start, stop, resize };
 };
-// --- End animated background hook ---
 
 type Project = {
     title: string;
@@ -159,8 +155,14 @@ const ProjectShowcase: React.FC = () => {
     const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
     const ctaRef = useRef<HTMLDivElement>(null);
 
-    // Integrate background animation
     const { canvasRef, start, stop, resize } = useCanvasAnimation();
+    const [canvasHeight, setCanvasHeight] = useState(0);
+
+    useEffect(() => {
+        if (typeof document !== "undefined") {
+            setCanvasHeight(document.body.scrollHeight);
+        }
+    }, []);
 
     useEffect(() => {
         start();
@@ -218,47 +220,17 @@ const ProjectShowcase: React.FC = () => {
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 w-full"
-                style={{ height: `${document.body.scrollHeight}px`, zIndex: 1 }}
+                style={{ height: `${canvasHeight}px`, zIndex: 1 }}
                 aria-hidden="true"
             />
-            <div
-                className="absolute inset-0 pointer-events-none hidden lg:block"
-                style={{ zIndex: 2 }} // Put above canvas but behind content (z-10)
-            >
-                <Image
-                    src="/assets/images/home/Star 2 (1).png"
-                    alt="Star Left"
-                    width={100}
-                    height={100}
-                    className="absolute left-[1%] top-[20%] object-cover"
-                    priority
-                />
-                <Image
-                    src="/assets/images/home/Star 2 (1).png"
-                    alt="Star Left"
-                    width={100}
-                    height={100}
-                    className="absolute right-[4%] top-[36%] object-cover"
-                    priority
-                />
-                <Image
-                    src="/assets/images/home/Star 2 (1).png"
-                    alt="Star Right"
-                    width={100}
-                    height={100}
-                    className="absolute left-[3%] top-[60%] object-cover"
-                    priority
-                />
-                <Image
-                    src="/assets/images/home/Star 2 (1).png"
-                    alt="Star Right"
-                    width={100}
-                    height={100}
-                    className="absolute right-[14%] top-[78%] object-cover"
-                    priority
-                />
-            </div>
 
+            {/* Optional background stars */}
+            <div className="absolute inset-0 pointer-events-none hidden lg:block" style={{ zIndex: 2 }}>
+                <Image src="/assets/images/home/Star 2 (1).png" alt="Star" width={100} height={100} className="absolute left-[1%] top-[20%]" />
+                <Image src="/assets/images/home/Star 2 (1).png" alt="Star" width={100} height={100} className="absolute right-[4%] top-[36%]" />
+                <Image src="/assets/images/home/Star 2 (1).png" alt="Star" width={100} height={100} className="absolute left-[3%] top-[60%]" />
+                <Image src="/assets/images/home/Star 2 (1).png" alt="Star" width={100} height={100} className="absolute right-[14%] top-[78%]" />
+            </div>
 
             {/* Main Content */}
             <section className="relative z-10 text-white pb-5 px-4 sm:px-6 lg:px-12 lg:pt-30 pt-4">
@@ -271,70 +243,40 @@ const ProjectShowcase: React.FC = () => {
                             onClick={() => router.push(project.navigate)}
                         >
                             <div className="relative w-full h-[620px] rounded-xl overflow-hidden md:mt-6 mt-2">
-                                <Image
-                                    src={project.imageUrl}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover"
-                                />
+                                <Image src={project.imageUrl} alt={project.title} fill className="object-cover" />
                             </div>
                             <div>
                                 <div className="text-[24px] sm:text-[28px] md:text-[32px] font-bold text-white leading-[32px] flex items-center gap-5">
                                     {project.title}
                                     <span>
-                    <Image
-                        src="/assets/images/portfolio/Line 3.png"
-                        alt="Decorative Line"
-                        width={60}
-                        height={50}
-                    />
+                    <Image src="/assets/images/portfolio/Line 3.png" alt="Line" width={60} height={50} />
                   </span>
                                 </div>
                                 <div className="mt-5">
-                                    <p>
-                                        <span className="font-normal text-[#606060] md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px]">Client:</span>{" "}
-                                        <span className="font-normal text-white md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px]">{project.client}</span>
-                                    </p>
-                                    <p className="mt-2">
-                                        <span className="font-normal text-[#606060] md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px]">Work:</span>{" "}
-                                        <span className="font-normal text-white md:text-[18px] text-[16px] leading-[22px] tracking-[0.25px]">{project.work}</span>
-                                    </p>
+                                    <p><span className="text-[#606060]">Client:</span> <span className="text-white">{project.client}</span></p>
+                                    <p className="mt-2"><span className="text-[#606060]">Work:</span> <span className="text-white">{project.work}</span></p>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* CTA Section */}
+                {/* CTA */}
                 <div
                     ref={ctaRef}
-                    className="lg:mt-15 mt-13 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 container mx-auto text-white border border-white opacity-0 transform"
+                    className="lg:my-15 my-13 bg-[#302d2d] rounded-2xl py-15 px-6 sm:px-12 container mx-auto text-white border border-white opacity-0 transform"
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
                         <h2 className="text-[32px] sm:text-[36px] md:text-[40px] font-bold">
                             Hire the best developers and designers around!
                         </h2>
                         <div className="sm:justify-self-end flex flex-col items-center">
-                            <Image
-                                src="/assets/images/portfolio/Group 38.png"
-                                alt="Top Decoration"
-                                width={100}
-                                height={50}
-                                className="sm:mb-5"
-                            />
-                            <button
-                                className="mt-4 sm:mt-0 text-white font-bold py-[14px] px-[65px] rounded-full shadow-lg transition"
-                                style={{ backgroundImage: 'linear-gradient(to left, #EE2A6D, #F2682F)' }}
-                            >
+                            <Image src="/assets/images/portfolio/Group 38.png" alt="Top Decoration" width={100} height={50} className="sm:mb-5" />
+                            <button className="mt-4 sm:mt-0 text-white font-bold py-[14px] px-[65px] rounded-full shadow-lg transition"
+                                    style={{ backgroundImage: 'linear-gradient(to left, #EE2A6D, #F2682F)' }}>
                                 Contact Us
                             </button>
-                            <Image
-                                src="/assets/images/portfolio/Group 39.png"
-                                alt="Bottom Decoration"
-                                width={100}
-                                height={50}
-                                className="mt-5"
-                            />
+                            <Image src="/assets/images/portfolio/Group 39.png" alt="Bottom Decoration" width={100} height={50} className="mt-5" />
                         </div>
                     </div>
                 </div>
