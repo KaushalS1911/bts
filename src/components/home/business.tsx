@@ -1,8 +1,9 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RotatingWireframeSphere from "@/components/home/RotatingWireframeSphere";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,15 +93,8 @@ const Business: React.FC = () => {
                     </div>
 
                     {/* Image */}
-                    <div className="relative w-[260px] sm:w-[320px] md:w-[400px] h-[260px] sm:h-[320px] md:h-[400px] globe-image">
-                        <Image
-                            src="/assets/images/home/Clip.png"
-                            alt="globe-network"
-                            fill
-                            className="object-contain"
-                            priority
-                            sizes="(max-width: 768px) 100vw, 400px"
-                        />
+                    <div className="bg-[#1A1818] w-[400px] sm:w-[320px] md:w-[600px] h-[400px] sm:h-[320px] md:h-[600px] globe-image">
+                        <RotatingWireframeSphere />
                     </div>
 
                     {/* Right Stats */}
