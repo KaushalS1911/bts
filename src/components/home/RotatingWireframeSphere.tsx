@@ -13,26 +13,27 @@ const RotatingWireframeSphere: React.FC<SphereProps> = ({ className = '', style 
     const frameRef = useRef<number | null>(null);
 
     useEffect(() => {
-        if (!mountRef.current) return;
+        const mount = mountRef.current;
+        if (!mount) return;
 
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#1A1818');
 
         const camera = new THREE.PerspectiveCamera(
             75,
-            mountRef.current.clientWidth / mountRef.current.clientHeight,
+            mount.clientWidth / mount.clientHeight,
             0.1,
             1000
         );
         camera.position.z = 5;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+        renderer.setSize(mount.clientWidth, mount.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
 
-        // ❗ Clear previous canvas on hot reload / refresh
-        mountRef.current.innerHTML = '';
-        mountRef.current.appendChild(renderer.domElement);
+        // Clear previous canvas
+        mount.innerHTML = '';
+        mount.appendChild(renderer.domElement);
         rendererRef.current = renderer;
 
         const geometry = new THREE.IcosahedronGeometry(2, 1);
@@ -75,10 +76,10 @@ const RotatingWireframeSphere: React.FC<SphereProps> = ({ className = '', style 
         animate();
 
         const handleResize = () => {
-            if (!mountRef.current) return;
-            camera.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
+            if (!mount) return;
+            camera.aspect = mount.clientWidth / mount.clientHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+            renderer.setSize(mount.clientWidth, mount.clientHeight);
         };
 
         window.addEventListener('resize', handleResize);
@@ -86,12 +87,13 @@ const RotatingWireframeSphere: React.FC<SphereProps> = ({ className = '', style 
         return () => {
             window.removeEventListener('resize', handleResize);
             if (frameRef.current) cancelAnimationFrame(frameRef.current);
-            if (mountRef.current && renderer.domElement) {
-                mountRef.current.removeChild(renderer.domElement);
+            if (mount && renderer.domElement) {
+                mount.removeChild(renderer.domElement);
             }
             renderer.dispose();
         };
     }, []);
+
 
     return (
         <div

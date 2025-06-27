@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -40,13 +40,12 @@ const Swiper: React.FC<SwiperProps> = ({
     const childrenCount = childrenArray.length;
 
     // Function to get current slides per view based on screen width
-    const getCurrentSlidesPerView = () => {
+    const getCurrentSlidesPerView = useCallback(() => {
         if (!breakpoints) return slidesPerView;
 
         const width = window.innerWidth;
         let currentSlides = slidesPerView;
 
-        // Sort breakpoints in descending order and find the first match
         const sortedBreakpoints = Object.keys(breakpoints)
             .map(Number)
             .sort((a, b) => b - a);
@@ -59,11 +58,9 @@ const Swiper: React.FC<SwiperProps> = ({
         }
 
         return currentSlides;
-    };
+    }, [breakpoints, slidesPerView]);
 
-    // Handle window resize
     useEffect(() => {
-
         const handleResize = () => {
             const newSlidesPerView = getCurrentSlidesPerView();
             if (newSlidesPerView !== currentSlidesPerView) {
@@ -75,8 +72,7 @@ const Swiper: React.FC<SwiperProps> = ({
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [breakpoints, slidesPerView, currentSlidesPerView]); // ✅ clean deps
-
+    }, [getCurrentSlidesPerView, currentSlidesPerView]);
 
     // Calculate total slides that can be shown (how many times we can slide)
     const totalSlides = Math.max(1, childrenCount - currentSlidesPerView + 1);
