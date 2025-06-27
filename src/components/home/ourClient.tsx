@@ -257,7 +257,7 @@ const OurClient: React.FC = () => {
                 <h2 ref={headingRef} className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
                     Our Client Success Gallery
                 </h2>
-                <p ref={subheadingRef} className="text-center text-gray-300 mb-12 text-base md:text-lg">
+                <p ref={subheadingRef} className="text-center text-gray-300 mb-20 text-base md:text-lg">
                     A glimpse into the transformative journeys we&apos;ve been part of
                 </p>
 
