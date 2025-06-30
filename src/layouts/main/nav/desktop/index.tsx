@@ -57,7 +57,7 @@ export const DesktopNavigation: React.FC<NavigationProps> = ({
                                             onItemClick?.(item);
                                             router.push(item.href);
                                         }}
-                                        className={`text-lg font-medium transition-colors duration-200 ${
+                                        className={`text-lg font-medium cursor-pointer transition-colors duration-200 ${
                                             isActive ? 'text-white' : 'text-gray-400 hover:text-white'
                                         }`}
                                     >
@@ -70,7 +70,7 @@ export const DesktopNavigation: React.FC<NavigationProps> = ({
                         {/* Contact Us Button */}
                         <button
                             onClick={() => router.push('/contact')}
-                            className="ml-7 text-lg bg-gradient-to-r from-[#ff705b] to-[#e23375] text-white px-6 py-2 rounded-full font-medium transition-all duration-200 shadow-md hover:opacity-90"
+                            className="ml-7 text-lg cursor-pointer bg-gradient-to-r from-[#ff705b] to-[#e23375] text-white px-6 py-2 rounded-full font-medium transition-all duration-200 shadow-md hover:opacity-90"
                         >
                             Contact Us
                         </button>

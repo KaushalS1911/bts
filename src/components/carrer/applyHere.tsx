@@ -221,7 +221,7 @@ function ApplyHereForm() {
                     <div ref={buttonRef} className="flex justify-center pt-5">
                         <button
                             onClick={handleSubmit}
-                            className="bg-gradient-to-r from-[#F2682F] to-[#EE2A6D] text-white font-semibold py-3 px-20 rounded-full transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                            className="bg-gradient-to-r from-[#F2682F] to-[#EE2A6D] text-white cursor-pointer font-semibold py-3 px-20 rounded-full transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
                         >
                             Submit
                         </button>

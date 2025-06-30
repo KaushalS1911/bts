@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 function Hire() {
     return (
@@ -24,14 +25,15 @@ function Hire() {
                             />
 
                             {/* Contact Button */}
-                            <button
-                                className="mt-4 sm:mt-0 text-white font-bold py-[14px] px-[65px] rounded-full shadow-lg transition"
-                                style={{
-                                    backgroundImage: 'linear-gradient(to left, #EE2A6D, #F2682F)',
-                                }}
-                            >
-                                Contact Us
-                            </button>
+                            <Link href="/contact">
+                                <button
+                                    className="mt-4 sm:mt-0 text-white font-bold py-[14px] px-[65px] rounded-full shadow-lg transition cursor-pointer"
+                                    style={{ backgroundImage: 'linear-gradient(to left, #EE2A6D, #F2682F)' }}
+                                >
+                                    Contact Us
+                                </button>
+                            </Link>
+
 
                             {/* Bottom Image */}
                             <Image
