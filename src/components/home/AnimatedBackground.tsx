@@ -277,7 +277,7 @@ export const AnimatedBackground: React.FC = () => {
                     <button
                         ref={buttonRef}
                         type="button"
-                        className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:from-red-600 hover:to-pink-600 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                        className="group cursor-pointer inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:from-red-600 hover:to-pink-600 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-gray-900"
                         aria-label="Get started with our services"
                     >
                         Let&apos;s Get Started

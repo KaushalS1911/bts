@@ -124,7 +124,7 @@ const ContactUs = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="w-[262px] h-[57px] mt-10 rounded-full bg-gradient-to-r from-[#FF6A3D] to-[#FF2A68] text-white font-semibold text-lg hover:opacity-90 transition-opacity"
+                                className="w-[262px] h-[57px] mt-10 cursor-pointer rounded-full bg-gradient-to-r from-[#FF6A3D] to-[#FF2A68] text-white font-semibold text-lg hover:opacity-90 transition-opacity"
                             >
                                 Submit
                             </button>

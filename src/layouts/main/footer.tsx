@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../../public/assets/images/logo2.png';
 import { Mail, Phone, MapPin, ChevronRight,Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import Image from "next/image";
+import Link from 'next/link';
 
 interface FooterProps {
   className?: string;
@@ -58,12 +59,18 @@ export const Footer: React.FC<FooterProps> = () => {
                 <WavyUnderlineTitle>Quick Links</WavyUnderlineTitle>
               </h3>
               <ul className="space-y-3 text-white">
-                {['Services', 'Products', 'About', 'Careers', 'Blog'].map((text) => (
-                    <li key={text} className="flex items-center space-x-1">
-                      <ChevronRight size={18} className="text-[#EE2A6D]"/>
-                      <a href="#" className="transition-colors">
-                        {text}
-                      </a>
+                {[
+                  { label: 'Services', href: '/services' },
+                  { label: 'Portfolio', href: '/portfolio' },
+                  { label: 'About', href: '/about' },
+                  { label: 'Careers', href: '/careers' },
+                  { label: 'Blog', href: '/blogDetails' },
+                ].map(({ label, href }) => (
+                    <li key={label} className="flex items-center space-x-2">
+                      <ChevronRight size={18} className="text-[#EE2A6D]" />
+                      <Link href={href} className="hover:text-[#EE2A6D] transition-colors">
+                        {label}
+                      </Link>
                     </li>
                 ))}
               </ul>

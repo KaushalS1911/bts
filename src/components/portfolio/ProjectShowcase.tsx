@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -272,10 +273,15 @@ const ProjectShowcase: React.FC = () => {
                         </h2>
                         <div className="sm:justify-self-end flex flex-col items-center">
                             <Image src="/assets/images/portfolio/Group 38.png" alt="Top Decoration" width={100} height={50} className="sm:mb-5" />
-                            <button className="mt-4 sm:mt-0 text-white font-bold py-[14px] px-[65px] rounded-full shadow-lg transition"
-                                    style={{ backgroundImage: 'linear-gradient(to left, #EE2A6D, #F2682F)' }}>
-                                Contact Us
-                            </button>
+                            <Link href="/contact">
+                                <button
+                                    className="mt-4 sm:mt-0 text-white font-bold py-[14px] px-[65px] rounded-full shadow-lg transition cursor-pointer"
+                                    style={{ backgroundImage: 'linear-gradient(to left, #EE2A6D, #F2682F)' }}
+                                >
+                                    Contact Us
+                                </button>
+                            </Link>
+
                             <Image src="/assets/images/portfolio/Group 39.png" alt="Bottom Decoration" width={100} height={50} className="mt-5" />
                         </div>
                     </div>
