@@ -62,8 +62,11 @@ const testimonials: Testimonial[] = [
 const WorkingWithUs: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleTestimonials] = useState(3);
+    const [isAnimating, setIsAnimating] = useState(false);
     const headingRef = useRef<HTMLHeadingElement>(null);
     const avatarRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const testimonialTextRef = useRef<HTMLParagraphElement>(null);
+    const avatarContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (typeof window === "undefined") return;
@@ -100,16 +103,77 @@ const WorkingWithUs: React.FC = () => {
         return () => ctx.revert();
     }, []);
 
+    const animateTransition = (newIndex: number) => {
+        if (isAnimating) return;
+        setIsAnimating(true);
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                setCurrentIndex(newIndex);
+                setIsAnimating(false);
+            }
+        });
+
+        // Animate text out
+        if (testimonialTextRef.current) {
+            tl.to(testimonialTextRef.current, {
+                opacity: 0,
+                y: -20,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        }
+
+        // Animate avatars out
+        if (avatarContainerRef.current) {
+            tl.to(avatarContainerRef.current.children, {
+                opacity: 0,
+                y: 20,
+                scale: 0.9,
+                duration: 0.3,
+                ease: "power2.out",
+                stagger: 0.05
+            }, "-=0.2");
+        }
+
+        // Update index in the middle of animation
+        tl.call(() => {
+            setCurrentIndex(newIndex);
+        });
+
+        // Animate text in
+        if (testimonialTextRef.current) {
+            tl.to(testimonialTextRef.current, {
+                opacity: 1,
+                y: 0,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        }
+
+        // Animate avatars in
+        if (avatarContainerRef.current) {
+            tl.to(avatarContainerRef.current.children, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.4,
+                ease: "power2.out",
+                stagger: 0.05
+            }, "-=0.3");
+        }
+    };
+
     const nextSlide = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex + 1 >= testimonials.length ? 0 : prevIndex + 1
-        );
+        if (isAnimating) return;
+        const newIndex = currentIndex + 1 >= testimonials.length ? 0 : currentIndex + 1;
+        animateTransition(newIndex);
     };
 
     const prevSlide = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex - 1 < 0 ? testimonials.length - 1 : prevIndex - 1
-        );
+        if (isAnimating) return;
+        const newIndex = currentIndex - 1 < 0 ? testimonials.length - 1 : currentIndex - 1;
+        animateTransition(newIndex);
     };
 
     const getVisibleTestimonials = () => {
@@ -150,7 +214,8 @@ const WorkingWithUs: React.FC = () => {
                 <div className="relative">
                     <button
                         onClick={prevSlide}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-white rounded-full p-3 transition-colors duration-200 group"
+                        disabled={isAnimating}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-white rounded-full p-3 transition-colors duration-200 group disabled:opacity-50 disabled:cursor-not-allowed"
                         aria-label="Previous testimonial"
                     >
                         <MoveLeft
@@ -159,7 +224,8 @@ const WorkingWithUs: React.FC = () => {
 
                     <button
                         onClick={nextSlide}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-white rounded-full p-3 transition-colors duration-200 group"
+                        disabled={isAnimating}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-white rounded-full p-3 transition-colors duration-200 group disabled:opacity-50 disabled:cursor-not-allowed"
                         aria-label="Next testimonial"
                     >
                         <MoveRight
@@ -171,26 +237,32 @@ const WorkingWithUs: React.FC = () => {
                             <div className="mb-4 flex justify-start">
                                 <Image
                                     src="/assets/images/home/Vector (9).png"
-                                        alt="vector"
-                                        width={15}
-                                        height={15}
-                                    />
-                                </div>
-                                <p className="text-[16px] sm:text-[18px] leading-relaxed max-w-4xl mx-auto">
-                                    {testimonials[currentIndex].text}
-                                </p>
-                                <div className="mb-4 flex justify-end">
-                                    <Image
-                                        src="/assets/images/home/Vector (10).png"
-                                        alt="vector"
-                                        width={15}
-                                        height={15}
-                                    />
-                                </div>
+                                    alt="vector"
+                                    width={15}
+                                    height={15}
+                                />
+                            </div>
+                            <p
+                                ref={testimonialTextRef}
+                                className="text-[16px] sm:text-[18px] leading-relaxed max-w-4xl mx-auto"
+                            >
+                                {testimonials[currentIndex].text}
+                            </p>
+                            <div className="mb-4 flex justify-end">
+                                <Image
+                                    src="/assets/images/home/Vector (10).png"
+                                    alt="vector"
+                                    width={15}
+                                    height={15}
+                                />
                             </div>
                         </div>
+                    </div>
 
-                    <div className="flex justify-center items-center gap-4 sm:gap-12 px-16 py-3">
+                    <div
+                        ref={avatarContainerRef}
+                        className="flex justify-center items-center gap-4 sm:gap-12 px-16 py-3"
+                    >
                         {getVisibleTestimonials().map((testimonial, index) => {
                             const isCenter = index === Math.floor(visibleTestimonials / 2);
                             return (

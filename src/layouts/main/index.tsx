@@ -29,9 +29,9 @@ const navigationItems: NavItem[] = [
     href: '/portfolio'
   },
   {
-    id: 'blogDetails',
+    id: 'blogs',
     label: 'Blog',
-    href: '/blogDetails'
+    href: '/blogs'
   },
   {
     id: 'career',
