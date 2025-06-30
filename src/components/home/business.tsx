@@ -93,8 +93,9 @@ const Business: React.FC = () => {
                     </div>
 
                     {/* Image */}
-                    <div className="bg-[#1A1818] w-[400px] sm:w-[320px] md:w-[600px] h-[400px] sm:h-[320px] md:h-[600px] globe-image">
-                        <RotatingWireframeSphere />
+                    <div className="relative w-[320px] md:w-[480px] h-[320px] md:h-[480px] mx-auto mb-6 md:mb-8">
+                        <div className="absolute inset-0 rounded-full bg-[#3a0a2a] opacity-10 blur-3xl animate-pulse"></div>
+                        <RotatingWireframeSphere/>
                     </div>
 
                     {/* Right Stats */}
@@ -119,3 +120,86 @@ const Business: React.FC = () => {
 };
 
 export default Business;
+
+
+
+//
+// 'use client';
+// import React, { useEffect, useRef } from 'react';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+//
+// gsap.registerPlugin(ScrollTrigger);
+//
+// const Business: React.FC = () => {
+//     const sectionRef = useRef<HTMLDivElement>(null);
+//     const headingRef = useRef<HTMLDivElement>(null);
+//
+//     useEffect(() => {
+//         const ctx = gsap.context(() => {
+//             gsap.from(".stat-item", {
+//                 y: 50,
+//                 opacity: 0,
+//                 duration: 1,
+//                 stagger: 0.2,
+//                 ease: 'power2.out',
+//                 scrollTrigger: {
+//                     trigger: sectionRef.current,
+//                     start: 'top 80%',
+//                 }
+//             });
+//
+//             gsap.from(headingRef.current, {
+//                 y: 30,
+//                 opacity: 0,
+//                 scale: 0.95,
+//                 duration: 1,
+//                 ease: 'power2.out',
+//                 scrollTrigger: {
+//                     trigger: headingRef.current,
+//                     start: 'top 90%',
+//                 }
+//             });
+//         }, sectionRef);
+//
+//         return () => ctx.revert(); // Cleanup
+//     }, []);
+//
+//     return (
+//         <section ref={sectionRef} className="bg-[#1A1818] text-white py-16 px-4">
+//             <div className="container mx-auto">
+//                 {/* Heading Section */}
+//                 <div ref={headingRef} className="text-center mb-12 max-w-[840px] mx-auto">
+//                     <h2 className="text-[28px] sm:text-[32px] md:text-[40px] font-light leading-snug">
+//                         Discover why clients entrust their business success to{' '}
+//                         <span className="text-orange-500 italic font-semibold">
+//               Beyond Tech Solution
+//             </span>
+//                     </h2>
+//                 </div>
+//
+//                 {/* Stats Grid */}
+//                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+//                     <div className="stat-item">
+//                         <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">50+</h3>
+//                         <p className="text-[18px] sm:text-[20px] md:text-[24px]">Projects Delivered</p>
+//                     </div>
+//                     <div className="stat-item">
+//                         <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">2x</h3>
+//                         <p className="text-[18px] sm:text-[20px] md:text-[24px]">Growth Rate Achieved</p>
+//                     </div>
+//                     <div className="stat-item">
+//                         <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">5+</h3>
+//                         <p className="text-[18px] sm:text-[20px] md:text-[24px]">Years of Experience</p>
+//                     </div>
+//                     <div className="stat-item">
+//                         <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">20+</h3>
+//                         <p className="text-[18px] sm:text-[20px] md:text-[24px]">Creative Minds</p>
+//                     </div>
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// };
+//
+// export default Business;
