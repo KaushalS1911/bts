@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-// import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import RotatingWireframeSphere from "@/components/home/RotatingWireframeSphere";
@@ -51,6 +50,32 @@ const Business: React.FC = () => {
                 }
             });
 
+            // Count-up animation
+            gsap.utils.toArray<HTMLElement>('.count-up').forEach((el) => {
+                const countText = el.dataset.count || "0";
+                const suffix = countText.includes('+') ? '+' : countText.includes('x') ? 'x' : '';
+                const finalValue = parseInt(countText.replace(/[^0-9]/g, ''), 10);
+
+                gsap.fromTo(
+                    el,
+                    { innerText: 0 },
+                    {
+                        innerText: finalValue,
+                        duration: 2,
+                        ease: 'power1.out',
+                        snap: { innerText: 1 },
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none',
+                        },
+                        onUpdate: function () {
+                            el.innerText = Math.floor(Number(el.innerText)) + suffix;
+                        }
+                    }
+                );
+            });
+
         }, sectionRef);
 
         return () => ctx.revert(); // cleanup
@@ -79,13 +104,13 @@ const Business: React.FC = () => {
                     {/* Left Stats */}
                     <div className="flex flex-col lg:flex-col sm:flex-row gap-12 text-center lg:text-left">
                         <div className="stat-item">
-                            <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">50+</h3>
+                            <h3 className="count-up text-[44px] sm:text-[54px] md:text-[64px] font-semibold" data-count="50+">0</h3>
                             <p className="text-[18px] sm:text-[20px] md:text-[24px] max-w-[240px] mx-auto lg:mx-0">
                                 Projects Successfully Delivered
                             </p>
                         </div>
                         <div className="stat-item">
-                            <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">2x</h3>
+                            <h3 className="count-up text-[44px] sm:text-[54px] md:text-[64px] font-semibold" data-count="2x">0</h3>
                             <p className="text-[18px] sm:text-[20px] md:text-[24px] max-w-[240px] mx-auto lg:mx-0">
                                 Growth Rate, Consistently Achieved
                             </p>
@@ -93,21 +118,21 @@ const Business: React.FC = () => {
                     </div>
 
                     {/* Image */}
-                    <div className="relative w-[320px] md:w-[480px] h-[320px] md:h-[480px] mx-auto mb-6 md:mb-8">
+                    <div className="relative w-[320px] md:w-[480px] h-[320px] md:h-[480px] mx-auto mb-6 md:mb-8 globe-image">
                         <div className="absolute inset-0 rounded-full bg-[#3a0a2a] opacity-10 blur-3xl animate-pulse"></div>
-                        <RotatingWireframeSphere/>
+                        <RotatingWireframeSphere />
                     </div>
 
                     {/* Right Stats */}
                     <div className="flex flex-col lg:flex-col sm:flex-row gap-12 text-center lg:text-right">
                         <div className="stat-item">
-                            <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">5+</h3>
+                            <h3 className="count-up text-[44px] sm:text-[54px] md:text-[64px] font-semibold" data-count="5+">0</h3>
                             <p className="text-[18px] sm:text-[20px] md:text-[24px] max-w-[240px] mx-auto lg:mx-0">
                                 Years of Experience
                             </p>
                         </div>
                         <div className="stat-item">
-                            <h3 className="text-[44px] sm:text-[54px] md:text-[64px] font-semibold">20+</h3>
+                            <h3 className="count-up text-[44px] sm:text-[54px] md:text-[64px] font-semibold" data-count="20+">0</h3>
                             <p className="text-[18px] sm:text-[20px] md:text-[24px] max-w-[240px] mx-auto lg:mx-0">
                                 Creative Minds
                             </p>
@@ -120,6 +145,7 @@ const Business: React.FC = () => {
 };
 
 export default Business;
+
 
 
 
