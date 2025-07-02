@@ -59,7 +59,7 @@ const ProjectShowcase: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
                     {blogData.map((blog) => (
-                        <Link href={`/blog/${blog.slug}`} key={blog.slug}>
+                        <Link href={`/blogDetails`} key={blog.slug}>
                             <div className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 group cursor-pointer">
                                 {/* Image */}
                                 <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
